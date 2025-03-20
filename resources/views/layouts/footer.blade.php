@@ -8,7 +8,7 @@
     </head>
 <body>
     <!-- Footer -->
-    <footer class="footer bg-footer py-4 mt-5">
+    <footer class="footer bg-footer py-4">
         <div class="container">
             <div class="row justify-content-end">
                 <!-- Brand dan Deskripsi -->
@@ -21,9 +21,9 @@
                 <div class="col-md-2">
                     <h5 class="">Halaman</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">Produk</a></li>
-                        <li><a href="#" class="footer-link">Testimoni</a></li>
-                        <li><a href="#" class="footer-link">Cara Order</a></li>
+                        <li><a href="{{ route('produk.index') }}"  class="footer-link">Produk</a></li>
+                        <li><a href="{{ route('testimoni.index') }}"  class="footer-link">Testimoni</a></li>
+                        <li><a href="{{ route('caraorder.index') }}"  class="footer-link">Cara Order</a></li>
                     </ul>
                 </div>
     
@@ -31,7 +31,7 @@
                 <div class="col-md-2">
                     <h5 class="">Komunitas</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">Portfolio</a></li>
+                        <li><a href="{{ route('portfolio.index') }}"  class="footer-link">Portfolio</a></li>
                     </ul>
                 </div>
     
@@ -39,9 +39,9 @@
                 <div class="col-md-2">
                     <h5 class="">Hubungi Kami</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">Kontak Kami</a></li>
-                        <li><a href="#" class="footer-link">Tentang Kami</a></li>
-                        <li><a href="#" class="footer-link">FAQs</a></li>
+                        <li><a href="{{ route('kontakkami.index') }}"  class="footer-link">Kontak Kami</a></li>
+                        <li><a href="{{ route('tentangkami.index') }}"  class="footer-link">Tentang Kami</a></li>
+                        <li><a href="{{ route('faqs.index') }}"  class="footer-link">FAQs</a></li>
                     </ul>
                 </div>
     
