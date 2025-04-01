@@ -41,23 +41,38 @@ public function register(Request $request)
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
+        // Jika email atau username adalah "admin" dan password adalah "admin"
+        if (($request->email === 'admin' || $request->email === 'admin@admin.com') && $request->password === 'admin') {
+            // Simpan sesi admin secara manual
+            session(['is_admin' => true]);
+
+            return redirect()->route('admin.dashboard')->with('success', 'Selamat datang, Admin!');
+        }
+
+        // Proses login biasa
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('beranda')->with('success', 'Berhasil login!');
         }
 
         return back()->withErrors(['email' => 'Email atau password salah']);
     }
 
+
     // Logout user
     public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login')->with('success', 'Anda telah logout!');
-    }
+{
+    session()->forget('is_admin'); // Hapus sesi admin jika ada
+    Auth::logout(); // Logout user
+
+    // Redirect ke halaman login
+    return redirect()->route('login')->with('success', 'Anda telah logout!');
+}
+
+    
 
     
 }

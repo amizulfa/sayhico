@@ -12,6 +12,14 @@ use App\Http\Controllers\FaqsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WishlistController;
 
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\AdminKategoriController;
+use App\Http\Controllers\admin\AdminProdukController;
+use App\Http\Controllers\admin\AdminTestimoniController;
+use App\Http\Controllers\admin\AdminPortfolioController;
+use App\Http\Controllers\admin\AdminKategoriFaqController;
+use App\Http\Controllers\admin\AdminFaqController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,3 +62,56 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'show'])->name('wishlist.index');
 
 });
+
+Route::middleware(['admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    // Kategori
+    Route::get('/kategori', [AdminKategoriController::class, 'index'])->name('admin.kategori');
+    Route::get('/kategori/tambah', [AdminKategoriController::class, 'create'])->name('admin.kategori.create');
+    Route::post('/kategori/store', [AdminKategoriController::class, 'store'])->name('admin.kategori.store');
+    Route::get('/kategori/edit/{id}', [AdminKategoriController::class, 'edit'])->name('admin.kategori.edit');
+    Route::post('/kategori/update/{id}', [AdminKategoriController::class, 'update'])->name('admin.kategori.update');
+    Route::delete('/kategori/delete/{id}', [AdminKategoriController::class, 'destroy'])->name('admin.kategori.destroy');
+
+    // Produk
+    Route::get('/produk', [AdminProdukController::class, 'index'])->name('admin.produk');
+    Route::get('/produk/tambah', [AdminProdukController::class, 'create'])->name('admin.produk.create');
+    Route::post('/produk/store', [AdminProdukController::class, 'store'])->name('admin.produk.store');
+    Route::get('/produk/edit/{id}', [AdminProdukController::class, 'edit'])->name('admin.produk.edit');
+    Route::post('/produk/update/{id}', [AdminProdukController::class, 'update'])->name('admin.produk.update');
+    Route::delete('/produk/{id}', [AdminProdukController::class, 'destroy'])->name('admin.produk.destroy');
+
+    // Testimoni
+    Route::get('/testimoni', [AdminTestimoniController::class, 'index'])->name('admin.testimoni');
+    Route::get('/testimoni/create', [AdminTestimoniController::class, 'create'])->name('admin.testimoni.create');
+    Route::post('/testimoni', [AdminTestimoniController::class, 'store'])->name('admin.testimoni.store');
+    Route::get('/testimoni/edit/{id}', [AdminTestimoniController::class, 'edit'])->name('admin.testimoni.edit');
+    Route::post('/testimoni/update/{id}', [AdminTestimoniController::class, 'update'])->name('admin.testimoni.update');    
+    Route::delete('/testimoni/{id}', [AdminTestimoniController::class, 'destroy'])->name('admin.testimoni.destroy');
+
+    // Portfolio
+    Route::get('/portfolio', [AdminPortfolioController::class, 'index'])->name('admin.portfolio');
+    Route::get('/portfolio/create', [AdminPortfolioController::class, 'create'])->name('admin.portfolio.create');
+    Route::post('/portfolio/store', [AdminPortfolioController::class, 'store'])->name('admin.portfolio.store');
+    Route::get('/portfolio/edit/{id}', [AdminPortfolioController::class, 'edit'])->name('admin.portfolio.edit');
+    Route::post('/portfolio/update/{id}', [AdminPortfolioController::class, 'update'])->name('admin.portfolio.update');
+    Route::delete('/portfolio/delete/{id}', [AdminPortfolioController::class, 'destroy'])->name('admin.portfolio.destroy');
+
+    // Kategori FAQs
+    Route::get('/kategorifaqs', [AdminKategoriFaqController::class, 'index'])->name('admin.kategorifaqs');
+    Route::get('/kategorifaqs/tambah', [AdminKategoriFaqController::class, 'create'])->name('admin.kategorifaqs.create');
+    Route::post('/kategorifaqs', [AdminKategoriFaqController::class, 'store'])->name('admin.kategorifaqs.store');
+    Route::get('/kategorifaqs/{id}/edit', [AdminKategoriFaqController::class, 'edit'])->name('admin.kategorifaqs.edit');
+    Route::put('/kategorifaqs/{id}', [AdminKategoriFaqController::class, 'update'])->name('admin.kategorifaqs.update');
+    Route::delete('/kategorifaqs/{id}', [AdminKategoriFaqController::class, 'destroy'])->name('admin.kategorifaqs.destroy');
+
+    // FAQs
+    Route::get('/faqs', [AdminFaqController::class, 'index'])->name('admin.faqs');
+    Route::get('/faqs/tambah', [AdminFaqController::class, 'create'])->name('admin.faqs.create');
+    Route::post('/faqs', [AdminFaqController::class, 'store'])->name('admin.faqs.store');
+    Route::get('/faqs/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin.faqs.edit');
+    Route::post('/faqs/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faqs.update');
+    Route::delete('/faqs/delete/{id}', [AdminFaqController::class, 'destroy'])->name('admin.faqs.destroy');
+});
+
