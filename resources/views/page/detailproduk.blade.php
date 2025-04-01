@@ -22,12 +22,11 @@
     <div class="row">         
         <!-- Gambar Produk -->         
         <div class="col-md-6 img-container">             
-            <img src="{{ asset($produk->gambar_produk) }}" class="img-detail" alt="{{ $produk->nama_produk }}">             
+            <img src="{{ asset('storage/' .$produk->gambar_produk) }}" class="img-detail" alt="{{ $produk->nama_produk }}">             
             <div class="d-flex mt-3">                 
                 <!-- Thumbnail Gambar Lain -->                 
-                <img src="{{ asset($produk->gambar_produk) }}" class="img-thumbnail mx-1" style="width: 80px;">                 
-                <img src="{{ asset($produk->gambar_produk) }}" class="img-thumbnail mx-1" style="width: 80px;">                 
-                <img src="{{ asset($produk->gambar_produk) }}" class="img-thumbnail mx-1" style="width: 80px;">             
+                <img src="{{ asset('storage/' .$produk->gambar_produk2) }}" class="img-thumbnail mx-1" style="width: 80px;">                 
+                <img src="{{ asset('storage/' .$produk->gambar_produk3) }}" class="img-thumbnail mx-1" style="width: 80px;">             
             </div>         
         </div>          
 

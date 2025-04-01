@@ -43,7 +43,7 @@
 
         @if ($item->gambar_testi)
         <div class="product-images">
-            <img src="{{ asset('uploads/testimoni/' . $item->gambar_testi) }}" alt="Gambar Testimoni">
+            <img src="{{ asset('storage/' . $item->gambar_testi) }}" alt="Gambar Testimoni">
         </div>
         @endif
     </div>

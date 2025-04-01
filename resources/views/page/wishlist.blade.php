@@ -7,7 +7,7 @@
         @foreach($wishlistItems as $wishlistItem)
         <div class="col-md-3 col-sm-6 mb-4">
             <div class="card shadow-sm border-0 rounded">
-                <img src="{{ asset($wishlistItem->produk->gambar_produk) }}" class="card-img-top" alt="{{ $wishlistItem->produk->nama_produk }}">
+                <img src="{{ asset('storage/' . $wishlistItem->produk->gambar_produk) }}" class="card-img-top" alt="{{ $wishlistItem->produk->nama_produk }}">
                 <div class="card-body">
                     <h6 class="fw-bold text-dark">{{ $wishlistItem->produk->nama_produk }}</h6>
                     <p class="fw-bold harga">Rp {{ number_format((int) str_replace(['.', ','], '', $wishlistItem->produk->harga), 0, ',', '.') }}</p>
