@@ -1,171 +1,58 @@
 @extends('layouts.layout')
 
 @section('landingpage') 
-<style>
-    .testimonial-card {
-        border-radius: 10px;
-        background: white;
-        padding: 20px;
-        text-align: left; 
-        border-style: solid;
-        border-color: rgb(240, 240, 240)
-    }
-    .testimonial-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .testimonial-header img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    .rating {
-        color: #fdd835;
-    }
-    .testimonial-text {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #333;
-    }
-    .product-images {
-        display: flex;
-        gap: 10px;
-        margin-top: 15px;
-    }
-    .product-images img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .cta-section {
-        position: relative;
-        margin-top: 50px;
-    }
-
-    .cta-section img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-    }
-
-    .cta-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(234, 187, 95, 0.4); /* Layer transparan */
-    }
-
-    .cta-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: white;
-        font-weight: bold;
-        max-width: 80%;
-        z-index: 2;
-    }
-
-    .cta-content h2 {
-        font-weight: bold;
-    }
-
-    .cta-content p {
-        font-weight: normal;
-    }
-
-    .cta-content .btn {
-        font-weight: bold;
-        padding: 10px 20px;
-    }
-
-    .btn-custom {
-        background-color: var(--accent-color);
-        color: white;
-        font-weight: bold;
-    }
-
-</style>
-
 <div class="container mt-5">
     <h1 class="title-h1 text-center mb-4">Testimoni</h1>
+    <!-- Filter -->
+    <div class="filter-container d-flex gap-2 mb-4 justify-content-center">
+        <button class="btn btn-outline-primary filter-btn" data-filter="semua">Semua</button>
+        <button class="btn btn-outline-primary filter-btn" data-filter="dengan_foto">Dgn Foto/Video</button>
+        
+        <select id="ratingFilter" class="btn btn-outline-primary">
+            <option value="">Semua Rating</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+        </select>
+        
 
-    <div class="row justify-content-center">
-        <!-- Testimoni 1 -->
-        <div class="col-md-4 mb-4">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://placehold.co/50x50" alt="User Photo">
-                    <div>
-                        <strong class="text-dark">Floyd Miles</strong>
-                        <div class="rating">★★★★★</div>
-                    </div>
-                </div>
-                <p class="text-muted">06-06-2016 | 20:16</p>
-                <p class="text-dark"><strong >Varian:</strong> Nama Varian</p>
-                <p class="testimonial-text"><strong>Deskripsi:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-                <!-- Gambar Produk -->
-                <div class="product-images">
-                    <img src="https://placehold.co/100x100" alt="Product Testimonial 1">
-                    <img src="https://placehold.co/100x100" alt="Product Testimonial 2">
-                </div>
-            </div>
-        </div>
-
-        <!-- Testimoni 2 -->
-        <div class="col-md-4 mb-4">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://placehold.co/50x50" alt="User Photo">
-                    <div>
-                        <strong>Floyd Miles</strong>
-                        <div class="rating">★★★★★</div>
-                    </div>
-                </div>
-                <p class="text-muted">06-06-2016 | 20:16</p>
-                <p><strong>Varian:</strong> Nama Varian</p>
-                <p class="testimonial-text"><strong>Deskripsi:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-                <!-- Gambar Produk -->
-                <div class="product-images">
-                    <img src="https://placehold.co/100x100" alt="Product Testimonial 1">
-                    <img src="https://placehold.co/100x100" alt="Product Testimonial 2">
-                </div>
-            </div>
-        </div>
-
-        <!-- Testimoni 3 -->
-        <div class="col-md-4 mb-4">
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <img src="https://placehold.co/50x50" alt="User Photo">
-                    <div>
-                        <strong>Floyd Miles</strong>
-                        <div class="rating">★★★★★</div>
-                    </div>
-                </div>
-                <p class="text-muted">06-06-2016 | 20:16</p>
-                <p><strong>Varian:</strong> Nama Varian</p>
-                <p class="testimonial-text"><strong>Deskripsi:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-                <!-- Gambar Produk -->
-                <div class="product-images">
-                    <img src="https://placehold.co/100x100" alt="Product Testimonial 1">
-                    <img src="https://placehold.co/100x100" alt="Product Testimonial 2">
-                </div>
-            </div>
-        </div>
+        @foreach ($kategori as $kat)
+            <button class="btn btn-outline-primary filter-btn" data-filter="{{ $kat->nama_kategori }}">
+                {{ $kat->nama_kategori }}
+            </button>
+        @endforeach
     </div>
+
+<div class="testimonial-container" id="testimonial-container">
+    @foreach ($testimoni as $item)
+    <div class="testimonial-card">
+        <div class="testimonial-header">
+            <div>
+                <strong class="text-dark">{{ $item->nama_pembeli }}</strong>
+                <div class="rating">
+                    {!! str_repeat('<i class="fas fa-star"></i>', $item->rating) !!}
+                    {!! str_repeat('<i class="far fa-star"></i>', 5 - $item->rating) !!}
+                </div>
+            </div>
+        </div>
+        <p class="text-muted">{{ $item->waktu_pembelian }} | Variasi: {{ $item->variasi }}</p>
+        <p class="text-dark"><strong>Kategori:</strong> {{ $item->kategoriData->nama_kategori ?? 'Tidak Ada' }}</p>
+        <p class="testimonial-text">{{ $item->deskripsi }}</p>
+
+        @if ($item->gambar_testi)
+        <div class="product-images">
+            <img src="{{ asset('uploads/testimoni/' . $item->gambar_testi) }}" alt="Gambar Testimoni">
+        </div>
+        @endif
+    </div>
+    @endforeach
 </div>
+
+</div>
+
+<!-- CTA Section -->
 <div class="cta-section">
     <img src="{{ asset('images/testimoni/cta.jpg') }}" alt="Say_Hi Cookies">
     <div class="cta-content">
@@ -174,7 +61,66 @@
         <a href="#" class="btn btn-custom">Pesan Sekarang</a>
     </div>
 </div>
-
-
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const ratingFilter = document.getElementById("ratingFilter");
+        const testimonialContainer = document.getElementById("testimonial-container");
+    
+        function applyFilter(filterType, value) {
+            let url = new URL(window.location.href);
+            url.searchParams.set(filterType, value);
+    
+            fetch(url, { 
+                headers: { 'X-Requested-With': 'XMLHttpRequest' } 
+            })
+            .then(response => response.json())
+            .then(data => {
+                testimonialContainer.innerHTML = ""; // Kosongkan isi dulu
+    
+                data.testimoni.forEach(item => {
+                    let ratingHTML = '';
+                    for (let i = 0; i < item.rating; i++) {
+                        ratingHTML += '<i class="fas fa-star"></i>';
+                    }
+                    for (let i = item.rating; i < 5; i++) {
+                        ratingHTML += '<i class="far fa-star"></i>';
+                    }
+    
+                    let testimoniHTML = `
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div>
+                                    <strong class="text-dark">${item.nama_pembeli}</strong>
+                                    <div class="rating">${ratingHTML}</div>
+                                </div>
+                            </div>
+                            <p class="text-muted">${item.waktu_pembelian} | Variasi: ${item.variasi}</p>
+                            <p class="text-dark"><strong>Kategori:</strong> ${item.kategoriData ? item.kategoriData.nama_kategori : 'Tidak Ada'}</p>
+                            <p class="testimonial-text">${item.deskripsi}</p>
+                            ${item.gambar_testi ? `<div class="product-images"><img src="/uploads/testimoni/${item.gambar_testi}" alt="Gambar Testimoni"></div>` : ''}
+                        </div>
+                    `;
+    
+                    testimonialContainer.innerHTML += testimoniHTML;
+                });
+            });
+        }
+    
+        filterButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                applyFilter("kategori", this.getAttribute("data-filter"));
+            });
+        });
+    
+        ratingFilter.addEventListener("change", function() {
+            applyFilter("rating", this.value);
+        });
+    });
+    </script>    
 @endsection
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/page/testimoni.css') }}">
+@endsection
+

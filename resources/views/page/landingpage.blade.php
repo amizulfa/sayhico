@@ -58,69 +58,23 @@
             <!-- Swiper Container -->
             <div class="swiper-container testimoni-swiper">
                 <div class="swiper-wrapper">
-                    <!-- Testimonial 1 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="User">
-                                <div class="ms-3">
-                                    <strong>Floyd Miles</strong>
-                                    <div class="stars">★★★★★</div>
+                    @foreach ($testimoni as $testi)
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="d-flex mb-2">
+                                    <div class="ms-3">
+                                        <strong>{{ $testi->nama_pembeli }}</strong>
+                                        <div class="stars">
+                                            {{ str_repeat('★', $testi->rating) }}{{ str_repeat('☆', 5 - $testi->rating) }}
+                                        </div>
+                                    </div>
                                 </div>
+                                <p class="date-time"><small>{{ date('d-m-Y', strtotime($testi->waktu_pembelian)) }}</small></p>
+                                <p class="variant"><strong>Varian:</strong> {{ $testi->variasi}}</p>
+                                <p class="description">{{ $testi->deskripsi }}</p>
                             </div>
-                            <p class="date-time "><small>06-06-2016 | 20:16</small></p>
-                            <p class="variant"><strong>Varian:</strong> Nama Varian</p>
-                            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </div>
-                    </div>
-    
-                    <!-- Testimonial 2 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="User">
-                                <div class="ms-3">
-                                    <strong>Jane Cooper</strong>
-                                    <div class="stars">★★★★★</div>
-                                </div>
-                            </div>
-                            <p class="date-time"><small>08-09-2020 | 15:30</small></p>
-                            <p class="variant"><strong>Varian:</strong> Nama Varian</p>
-                            <p class="description">Cookies ini sangat enak dan renyah!</p>
-                        </div>
-                    </div>
-    
-                    <!-- Testimonial 3 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="User">
-                                <div class="ms-3">
-                                    <strong>Emily Smith</strong>
-                                    <div class="stars">★★★★★</div>
-                                </div>
-                            </div>
-                            <p class="date-time"><small>12-11-2022 | 18:45</small></p>
-                            <p class="variant"><strong>Varian:</strong> Nama Varian</p>
-                            <p class="description">Rasanya sangat premium, pasti beli lagi!</p>
-                        </div>
-                    </div>
-    
-                    <!-- Testimonial 4 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-card">
-                            <div class="d-flex align-items-center mb-2">
-                                <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="User">
-                                <div class="ms-3">
-                                    <strong>Alice Brown</strong>
-                                    <div class="stars">★★★★★</div>
-                                </div>
-                            </div>
-                            <p class="date-time"><small>05-02-2023 | 10:20</small></p>
-                            <p class="variant"><strong>Varian:</strong> Nama Varian</p>
-                            <p class="description">Cookies lembut di dalam, renyah di luar!</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
     
                 <!-- Pagination (Dots) -->
@@ -128,6 +82,7 @@
             </div>
         </div>
     </section>
+    
     
     
 
@@ -294,14 +249,14 @@
     </script>
     
      
-     <script>
+    <script>
         var testimoniSwiper = new Swiper('.testimoni-swiper', {
             slidesPerView: 3, /* Tampilkan 3 testimoni dalam satu tampilan */
             spaceBetween: 20, /* Jarak antar testimoni */
             loop: false, /* Infinite scroll */
             pagination: {
                 el: '.swiper-pagination',
-                clickable: true, /* Memungkinkan pengguna klik titik pagination */
+                clickable: true, /* Bisa diklik */
             },
             autoplay: {
                 delay: 3000, /* Ganti slide otomatis setiap 3 detik */
@@ -314,6 +269,7 @@
             }
         });
     </script>
+    
     
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

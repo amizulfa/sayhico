@@ -1,0 +1,22 @@
+.card-custom {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    max-width: 450px;
+    margin: auto;
+}
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #6C63FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.card-img-top {
+   max-width: 200px; /* Ukuran gambar lebih kecil */
+   height: auto;
+   margin: 0 auto;
+}

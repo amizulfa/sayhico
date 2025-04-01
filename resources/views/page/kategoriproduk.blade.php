@@ -8,31 +8,7 @@
         <title>Kategori Produk</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
-            .category-card {
-                position: relative;
-                overflow: hidden;
-                cursor: pointer;
-            }
-            .category-card img {
-                width: 100%;
-                height: 250px;
-                object-fit: cover;
-            }
-            .category-overlay {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.6);
-                color: white;
-                text-align: center;
-                padding: 15px;
-                font-size: 1.5rem;
-            }
-            .category-card a {
-                text-decoration: none;
-                color: inherit;
-            }
+            
         </style>
     </head>
     <body class="bg-light">
@@ -78,4 +54,8 @@
         </div>
     </body>
 </html>
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/page/kategoriproduk.css') }}">
 @endsection

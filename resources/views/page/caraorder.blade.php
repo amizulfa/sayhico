@@ -1,30 +1,6 @@
 @extends('layouts.layout')
 
 @section('landingpage') 
-<style>
-    .card-custom {
-             border-radius: 15px;
-             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-             height: 100%;
-             max-width: 450px;
-             margin: auto;
-         }
-         .circle {
-             width: 50px;
-             height: 50px;
-             border-radius: 50%;
-             background-color: #6C63FF;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             margin-bottom: 20px;
-         }
-         .card-img-top {
-            max-width: 200px; /* Ukuran gambar lebih kecil */
-            height: auto;
-            margin: 0 auto;
-        }
-   </style>
     <div class="container mt-5">
         <h1 class="mb-5 font-weight-bold text-center title-h1">
             Cara Order
@@ -114,4 +90,7 @@
             </div>
            </div>
     </div>
+@endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/page/caraorder.css') }}">
 @endsection

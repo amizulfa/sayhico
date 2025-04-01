@@ -1,83 +1,6 @@
 @extends('layouts.layout')
 
 @section('landingpage') 
-<style>
-    .contact-map {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    }
-
-    .contact-card {
-        background: white;
-        border-style: solid;
-        border-color: rgb(240, 240, 240);
-        border-radius: 15px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        height: 150px;
-    }
-
-    .contact-card i {
-        font-size: 30px;
-        color: #f4a47d;
-        margin-bottom: 10px;
-    }
-
-    .contact-form-section {
-        max-width: 800px;
-        margin: auto;
-        padding: 40px;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-    
-    .contact-form h2 {
-        font-weight: bold;
-        color: black;
-    }
-    
-    .contact-form h2 span {
-        color: #f4a47d;
-    }
-    
-    .contact-form p {
-        font-size: 14px;
-        color: #666;
-    }
-
-    .form-control {
-        border-radius: 5px;
-        height: 45px;
-    }
-
-    textarea.form-control {
-        height: 120px;
-        resize: none;
-    }
-
-    .btn-submit {
-        background-color: #f4a47d;
-        color: white;
-        font-weight: bold;
-        padding: 12px;
-        border-radius: 5px;
-        width: 100%;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn-submit:hover {
-        background-color: #e8936c;
-    }
-</style>
-
 <div class="container mt-5">
     <div class="contact-section container text-center">
         <h1 class="mb-5 font-weight-bold text-center title-h1 mt-5">
@@ -147,5 +70,8 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/page/kontakkami.css') }}">
 @endsection

@@ -1,0 +1,172 @@
+/* ============================= */
+/* == 1. TESTIMONIAL SECTION == */
+/* ============================= */
+
+.testimonial-container {
+    max-width: 700px; /* Lebar maksimal */
+    margin: auto; /* Pusatkan di tengah */
+}
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    background: white;
+    padding: 20px;
+    border: 1px solid rgb(240, 240, 240);
+    margin-bottom: 15px; /* Spasi antar testimoni */
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.testimonial-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.rating {
+    color: #fdd835; /* Warna bintang */
+    font-size: 16px;
+}
+
+.testimonial-meta {
+    font-size: 13px;
+    color: gray;
+}
+
+.testimonial-text {
+    font-size: 14px;
+    color: #333;
+}
+
+.product-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.product-images img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ========================== */
+/* == 2. CTA (Call to Action) == */
+/* ========================== */
+
+.cta-section {
+    position: relative;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.cta-section img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.cta-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(234, 187, 95, 0.4); /* Overlay semi-transparan */
+    border-radius: 10px;
+}
+
+.cta-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    max-width: 80%;
+    z-index: 2;
+}
+
+.cta-content h2 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.cta-content p {
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.cta-content .btn {
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.btn-custom {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.btn-custom:hover {
+    background-color: #d69e2e;
+}
+
+/* ========================== */
+/* == 3. RESPONSIVE DESIGN == */
+/* ========================== */
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        padding: 15px;
+    }
+
+    .product-images img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .cta-section img {
+        height: 300px;
+    }
+
+    .cta-content h2 {
+        font-size: 20px;
+    }
+
+    .cta-content p {
+        font-size: 14px;
+    }
+}
+
+.filter-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: #fdd835;
+    color: white;
+}
+
+.rating {
+    color: #fdd835;
+    font-size: 16px;
+}

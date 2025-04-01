@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('font/font/css/all.min.css') }}">
 
-
+ @yield('styles')
 @include('layouts.header')
 
 @yield('landingpage')

@@ -1,0 +1,174 @@
+:root {
+    --accent-color: #DF9755;
+    --brokenwhite-color: #FEF6F6;
+}
+
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+    color: #000;
+}
+
+.btn-warning {
+    background-color: #ff9800;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.btn-warning:hover {
+    background-color: #e68900;
+}
+
+.img-thumbnail {
+    cursor: pointer;
+    border: 2px solid #ff9800;
+}
+
+.detail-container img {
+    border-radius: 25px;
+}
+
+.btn-back a{
+    text-decoration: none;
+}
+
+.iconshare {
+    color: var(--accent-color);
+}
+
+.btn {
+    background-color: var(--accent-color);
+}
+
+.img-detail {
+    width: 80%;
+}
+
+.img-container {
+    margin-left: 60px;
+}
+
+.produk-container {
+    margin-left: -100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Menjaga posisi elemen */
+    min-height: 100%; /* Pastikan kontainernya memiliki tinggi penuh */
+}
+
+/* Agar tombol dan share selalu di bagian bawah */
+.produk-container .btn-pesan,
+.produk-container .divider,
+.produk-container .share-container {
+    margin-top: auto;
+}
+
+.card {
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    height: 180px; /* Sesuaikan tinggi gambar */
+    object-fit: cover;
+}
+
+.card-body h6 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.card-body p {
+    margin-bottom: 3px;
+}
+
+.card-body .text-warning {
+    font-size: 14px;
+}
+
+.card-body .text-muted {
+    font-size: 12px;
+}
+
+.harga, .ukuran, .kategori {
+    color: var(--accent-color);
+}
+
+.cta-container {
+    background-color: #FFECE2;
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.cta-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #D17842;
+}
+
+.cta-buttons .cta-btn {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 30px;
+}
+
+.btn-primary.cta-btn {
+    background-color: #D17842;
+    border-color: #D17842;
+}
+
+.btn-primary.cta-btn:hover {
+    background-color: #B15E32;
+    border-color: #B15E32;
+}
+
+.btn-outline-primary.cta-btn {
+    color: #D17842;
+    border-color: #D17842;
+}
+
+.btn-outline-primary.cta-btn:hover {
+    background-color: #D17842;
+    color: white;
+}
+
+.cta-image {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.cta-container {
+    background-color: var(--brokenwhite-color);
+}
+
+.hub {
+    background-color: var(--accent-color);
+}
+
+.lihat {
+    background-color: var(--brokenwhite-color);
+}
+
+.divider {
+    width: 100%;
+    border: none;
+    border-top: 2px solid #5f5f5f; /* Warna abu-abu muda seperti di gambar */
+    margin: 20px 0; /* Spasi atas dan bawah */
+}
+
+.btn-pesan {
+    margin-top: 200px;;
+}

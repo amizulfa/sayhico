@@ -1,0 +1,31 @@
+.produk-container .card-text {
+    color: var(--accent-color);
+}
+
+.produk-container .card-title {
+    max-width: 150px;
+}
+
+.produk-container .harga {
+    max-width: 150px;
+}
+
+.produk-container .card-produk {
+    box-shadow: 5px 5px 8px rgb(128, 128, 128);
+}
+
+.card-produk img {
+    width: 100%; /* Mengisi lebar card */
+    height: 200px; /* Atur tinggi gambar */
+    object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+}
+
+.produk-container h1 {
+    color: black;
+    font-weight: bold;
+    font-size: var(--font-verybig);
+}
+
+.btn-back a{
+    text-decoration: none;
+}

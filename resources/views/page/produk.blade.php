@@ -1,6 +1,13 @@
 @extends('layouts.layout')
 
 @section('landingpage')
+
+<div class="container btn-back mt-3">
+    <a href="{{ route('kategoriproduk.index') }}" class="text-dark fw-bold d-flex align-items-center">
+        <i class="fas fa-arrow-left me-2"></i> Kembali
+    </a>
+</div>
+
 <div class="container produk-container py-4">
     <h1 class="text-center mb-4">Produk</h1>
 
@@ -22,27 +29,24 @@
 
     <div class="row justify-content-start" id="produk-container">
         @foreach ($produk as $produk)
-        <div class="col-md-3 mb-4 d-flex justify-content-center produk-item">
-            <div class="card card-produk rounded-3" style="width: 200px;">
-                <img src="{{ asset($produk->gambar_produk) }}"
-                     class="img-fluid mx-auto d-block rounded-top-3" 
-                     style="max-width: 200px; height: 200px;" 
-                     alt="{{ $produk->nama_produk }}">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">{{ $produk->nama_produk }}</h5>
-                    <p class="card-text fw-bold harga">
-                        @if(is_numeric(str_replace(['.', ','], '', $produk->harga)))
+            <div class="col-md-3 mb-4 d-flex justify-content-center produk-item">
+                <div class="card card-produk rounded-3" style="width: 200px;">
+                    <a href="{{ route('produk.detail', ['id_produk' => $produk->id_produk, 'kategori' => request('kategori')]) }}">
+                        <img src="{{ asset($produk->gambar_produk) }}" class="img-fluid mx-auto d-block rounded-top-3" 
+                             style="max-width: 200px; height: 200px;" alt="{{ $produk->nama_produk }}">
+                    </a>                    
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ $produk->nama_produk }}</h5>
+                        <p class="card-text fw-bold harga">
                             Rp {{ number_format((int) str_replace(['.', ','], '', $produk->harga), 0, ',', '.') }}
-                        @else
-                            {{ $produk->harga }}
-                        @endif
-                    </p>                    
-                    <p class="card-text text-end fw-bold ukuran">{{ $produk->ukuran }}</p>
-                    <p class="card-text text-center fw-bold kategori">{{ $produk->kategori->nama_kategori ?? 'Tidak ada' }}</p>
+                        </p>                    
+                        <p class="card-text text-end fw-bold ukuran">{{ $produk->ukuran }}</p>
+                        <p class="card-text text-center fw-bold kategori">{{ $produk->kategori->nama_kategori ?? 'Tidak ada' }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
         @endforeach
+
     </div>
 </div>
 
@@ -78,4 +82,8 @@
     });
 </script>
 
+@endsection
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/page/produk.css') }}">
 @endsection
