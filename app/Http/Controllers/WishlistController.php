@@ -55,4 +55,23 @@ class WishlistController extends Controller
             'message' => 'Produk berhasil disimpan ke wishlist.'
         ]);
     }
+
+    public function destroy(Request $request)
+{
+    $request->validate([
+        'id_produk' => 'required|exists:produk,id_produk'
+    ]);
+
+    $user = auth()->user();
+
+    Wishlist::where('id_user', $user->id_user)
+            ->where('id_produk', $request->id_produk)
+            ->delete();
+
+    return response()->json([
+        'message' => 'Produk berhasil dihapus dari wishlist.'
+    ]);
+}
+
+
 }

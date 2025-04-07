@@ -29,6 +29,11 @@ body {
     font-size: var(--font-title);
 }
 
+.navbar .btn-masuk {
+    background-color: var(--primary-color);
+    color: white;
+}
+
 
 /*FOOTER*/
 .bg-footer {

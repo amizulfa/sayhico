@@ -30,10 +30,10 @@
     <div class="row justify-content-start" id="produk-container">
         @foreach ($produk as $produk)
             <div class="col-md-3 mb-4 d-flex justify-content-center produk-item">
-                <div class="card card-produk rounded-3" style="width: 200px;">
+                <div class="card card-produk rounded-3" style="width: 300px;">
                     <a href="{{ route('produk.detail', ['id_produk' => $produk->id_produk, 'kategori' => request('kategori')]) }}">
                         <img src="{{ asset('storage/' . $produk->gambar_produk) }}" class="img-fluid mx-auto d-block rounded-top-3" 
-                             style="max-width: 200px; height: 200px;" alt="{{ $produk->nama_produk }}">
+                             style="max-width: 300px; height: 200px;" alt="{{ $produk->nama_produk }}">
                     </a>                    
                     <div class="card-body">
                         <h5 class="card-title fw-bold">{{ $produk->nama_produk }}</h5>

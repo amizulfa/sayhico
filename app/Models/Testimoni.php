@@ -9,8 +9,9 @@ class Testimoni extends Model
 {
     use HasFactory;
 
-    protected $table = 'testimoni'; // Nama tabel
-    protected $primaryKey = 'id_testi'; // Primary key
+    protected $table = 'testimoni'; 
+    protected $primaryKey = 'id_testi';
+    public $timestamps = false;
 
     protected $fillable = [
         'nama_pembeli',
@@ -19,12 +20,12 @@ class Testimoni extends Model
         'deskripsi',
         'rating',
         'gambar_testi',
-        'kategori'
+        'id_kategori',
     ];
 
-    // Relasi ke kategori
-    public function kategoriData()
+    public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori', 'id_kategori'); // Sesuaikan nama tabel dan foreign key
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
     }
+
 }

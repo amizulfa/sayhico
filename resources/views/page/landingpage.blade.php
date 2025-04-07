@@ -140,40 +140,11 @@
             <!-- Swiper Container -->
             <div class="swiper-container portfolio-swiper">
                 <div class="swiper-wrapper">
-                    <!-- Portfolio Item 1 -->
+                   @foreach ($portfolio as $p)
                     <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port1.jpg') }}" alt="Portfolio 1">
+                        <img src="{{ asset('storage/' . $p->gambar_port) }}">
                     </div>
-    
-                    <!-- Portfolio Item 2 -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port2.jpg') }}" alt="Portfolio 2">
-                    </div>
-    
-                    <!-- Portfolio Item 3 -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port3.jpg') }}" alt="Portfolio 3">
-                    </div>
-    
-                    <!-- Portfolio Item 4 -->
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port4.jpg') }}" alt="Portfolio 4">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port5.jpg') }}" alt="Portfolio 5">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port6.jpg') }}" alt="Portfolio 6">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port7.jpg') }}" alt="Portfolio 7">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port8.jpg') }}" alt="Portfolio 8">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ asset('images/landingpage/port9.jpg') }}" alt="Portfolio 9">
-                    </div>
+                   @endforeach
                 </div>
     
                 <!-- Pagination Dots -->

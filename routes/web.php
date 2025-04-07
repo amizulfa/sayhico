@@ -8,9 +8,10 @@ use App\Http\Controllers\KontakKamiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\FaqsController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ProfilController;
 
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AdminKategoriController;
@@ -43,7 +44,7 @@ Route::get('/testimoni', [TestimoniController::class, 'index'])->name('testimoni
 Route::get('/kontakkami', [KontakKamiController::class, 'index'])->name('kontakkami.index');
 Route::get('/tentangkami', [TentangKamiController::class, 'index'])->name('tentangkami.index');
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
-Route::get('/faqs', [FaqsController::class, 'index'])->name('faqs.index');
+Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
 Route::get('/produk/{id_produk}', [ProductController::class, 'show'])->name('produk.detail');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
@@ -60,7 +61,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
     // Route untuk melihat wishlist
     Route::get('/wishlist', [WishlistController::class, 'show'])->name('wishlist.index');
-
+    Route::post('/wishlist/remove', [WishlistController::class, 'destroy'])->name('wishlist.remove');
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
+    Route::get('/profil/edit', [ProfilController::class, 'edit'])->name('profil.edit');
+    Route::post('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
 });
 
 Route::middleware(['admin'])->prefix('admin')->group(function () {

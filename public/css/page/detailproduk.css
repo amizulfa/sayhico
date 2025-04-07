@@ -77,7 +77,6 @@ h3 {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -107,11 +106,14 @@ h3 {
 }
 
 .cta-container {
-    background-color: #FFECE2;
-    padding: 50px;
-    border-radius: 20px;
-    text-align: center;
+    background-color: var(--brokenwhite-color);
 }
+
+.cta-container .row {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 
 .cta-container h2 {
     font-size: 24px;
@@ -150,9 +152,6 @@ h3 {
     border-radius: 15px;
 }
 
-.cta-container {
-    background-color: var(--brokenwhite-color);
-}
 
 .hub {
     background-color: var(--accent-color);
@@ -165,10 +164,11 @@ h3 {
 .divider {
     width: 100%;
     border: none;
-    border-top: 2px solid #5f5f5f; /* Warna abu-abu muda seperti di gambar */
-    margin: 20px 0; /* Spasi atas dan bawah */
+    border-top: 2px solid #5f5f5f;
+    margin: 20px 0; 
 }
 
 .btn-pesan {
     margin-top: 200px;;
 }
+

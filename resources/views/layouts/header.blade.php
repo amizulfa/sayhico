@@ -67,10 +67,15 @@
                     <!-- Jika User Login -->
                     @auth
                     <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i>
+                        <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-circle-user fa-xl"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profil.index') }}">
+                                    <i class="fa-solid fa-user"></i> Profil Saya
+                                </a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('wishlist.index') }}">
                                     <i class="fa-solid fa-heart text-danger"></i> Wishlist
@@ -85,10 +90,11 @@
                                 </form>
                             </li>
                         </ul>
-                    </div>
+                    </div>                  
+                    
                     @else
                     <!-- Jika User Belum Login -->
-                    <a href="{{ route('register') }}" class="btn btn-primary px-4">Masuk</a>
+                    <a href="{{ route('login') }}" class="btn btn-masuk px-4 fw-bold">Masuk</a>
                     @endauth
 
                 </div>

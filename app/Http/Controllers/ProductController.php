@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Wishlist;
 
 class ProductController extends Controller
 {
@@ -26,13 +27,20 @@ class ProductController extends Controller
     {
         $produk = Produk::where('id_produk', $id_produk)->firstOrFail();
 
-        // Ambil produk lain dengan kategori yang sama, kecuali produk yang sedang dilihat
         $produkLainnya = Produk::where('id_kategori', $produk->id_kategori)
                                 ->where('id_produk', '!=', $id_produk)
                                 ->limit(4)
                                 ->get();
 
-        return view('page.detailproduk', compact('produk', 'produkLainnya'));
+                                $sudahDisimpan = false;
+
+        if (auth()->check()) {
+            $sudahDisimpan = Wishlist::where('id_user', auth()->user()->id_user)
+                                    ->where('id_produk', $id_produk)
+                                    ->exists();
+        }
+
+        return view('page.detailproduk', compact('produk', 'produkLainnya', 'sudahDisimpan'));
     }
 
 

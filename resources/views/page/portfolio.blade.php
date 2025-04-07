@@ -18,17 +18,9 @@
 
     <!-- Grid Portfolio 2 Baris x 5 Kolom -->
     <div class="portfolio-grid">
-        <!-- Baris 1 -->
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/1.jpg') }}" alt="Kue 1"></div>
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/3.jpg') }}" alt="Kue 3"></div>
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/4.jpg') }}" alt="Kue 4"></div>
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/5.jpg') }}" alt="Kue 5"></div>
-
-        <!-- Baris 2 -->
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/6.jpg') }}" alt="Kue 6"></div>
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/7.jpg') }}" alt="Kue 7"></div>
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/8.jpg') }}" alt="Kue 8"></div>
-        <div class="portfolio-item"><img src="{{ asset('images/portfolio/9.jpg') }}" alt="Kue 9"></div>
+        @foreach ($portfolio as $p)
+        <div class="portfolio-item"><img src="{{ asset('storage/' . $p->gambar_port) }}"></div>
+        @endforeach
     </div>
 </div>
 @endsection

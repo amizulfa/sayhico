@@ -1,6 +1,7 @@
 @extends('layouts.layout')  
 
 @section('landingpage') 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="container btn-back mt-3">     
     <div class="container btn-back mt-3">         
         <a href="{{ route('produk.index', ['kategori' => request('kategori')]) }}" 
@@ -25,8 +26,13 @@
             <img src="{{ asset('storage/' .$produk->gambar_produk) }}" class="img-detail" alt="{{ $produk->nama_produk }}">             
             <div class="d-flex mt-3">                 
                 <!-- Thumbnail Gambar Lain -->                 
-                <img src="{{ asset('storage/' .$produk->gambar_produk2) }}" class="img-thumbnail mx-1" style="width: 80px;">                 
-                <img src="{{ asset('storage/' .$produk->gambar_produk3) }}" class="img-thumbnail mx-1" style="width: 80px;">             
+                @if ($produk->gambar_produk2)
+                    <img src="{{ asset('storage/' .$produk->gambar_produk2) }}" class="img-thumbnail mx-1" style="width: 80px;">
+                @endif
+
+                @if ($produk->gambar_produk3)
+                    <img src="{{ asset('storage/' . $produk->gambar_produk3) }}" class="img-thumbnail mx-1" style="width: 80px;">
+                @endif
             </div>         
         </div>          
 
@@ -37,16 +43,38 @@
             <p class="text-dark"><strong>Ukuran:</strong> {{ $produk->ukuran }}</p>
             <p class="text-dark deskripsi-produk">{{ $produk->deskripsi }}</p>
 
-            <!-- Ikon Love (Simpan Produk) -->
-            <button class="btn btn-outline-danger" id="wishlist-btn" data-produk-id="{{ $produk->id_produk }}">
-                <i class="fa-solid fa-heart"></i> Simpan
-            </button>
+            @auth
+                <!-- Jika sudah login -->
+                <button 
+                    class="btn {{ $sudahDisimpan ? 'btn-danger' : 'btn-outline-danger' }}" 
+                    id="wishlist-btn" 
+                    data-produk-id="{{ $produk->id_produk }}"
+                    data-saved="{{ $sudahDisimpan ? 'true' : 'false' }}">
+                    <i class="fa-solid fa-heart"></i> 
+                    {{ $sudahDisimpan ? 'Hapus dari Wishlist' : 'Simpan Produk' }}
+                </button>
+            @else
+                <!-- Jika belum login -->
+                <button 
+                    class="btn btn-outline-danger" 
+                    onclick="showLoginAlert()">
+                    <i class="fa-solid fa-heart"></i> Simpan Produk
+                </button>
+            @endauth
+
+
+            <!-- Tombol Pesan Sekarang -->
+            <a 
+                href="https://wa.me/6281295923115?text=Halo%20Say%20Hi.Co!%20Saya%20ingin%20memesan%20produk%20{{ urlencode($produk->nama_produk) }}%20yang%20berukuran%20{{ urlencode($produk->ukuran) }}." 
+                target="_blank" 
+                class="btn btn-success mt-3"
+                >
+                <i class="fa-brands fa-whatsapp me-1"></i> Pesan Sekarang
+            </a>
+
+
 
             <div class="produk-bottom">
-                <!-- Tombol Pesan -->
-                <a href="https://wa.me/628123456789?text=Saya ingin pesan {{ $produk->nama_produk }}" 
-                   class="btn text-white fw-bold btn-pesan">Pesan Sekarang</a>
-        
                 <!-- Garis pemisah -->
                 <hr class="divider mt-3">
         
@@ -63,20 +91,21 @@
     </div> 
 </div>  
 
+<hr class="ms-5 me-5">
 <!-- Produk Lainnya -->
 @if($produkLainnya->isNotEmpty())
     <div class="container mt-5">
-        <h3 class="fw-bold text-center">Produk Lainnya</h3>
+        <h3 class="fw-bold text-center mb-5">Produk Lainnya</h3>
         <div class="row justify-content-center">
             @foreach ($produkLainnya as $produkItem)
                 <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="card shadow-sm border-0 rounded">
-                        <img src="{{ asset($produkItem->gambar_produk) }}" class="card-img-top" alt="{{ $produkItem->nama_produk }}" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <div class="card-body">
+                    <div class="card  h-100 d-flex flex-column">
+                        <img src="{{ asset('storage/' . $produkItem->gambar_produk) }}" class="card-img-top" alt="{{ $produkItem->nama_produk }}">
+                        <div class="card-body ">
                             <h6 class="fw-bold text-dark">{{ $produkItem->nama_produk }}</h6>
                             <p class=" fw-bold harga">Rp {{ number_format((int) str_replace(['.', ','], '', $produkItem->harga), 0, ',', '.') }}</p>
                             <p class="card-text text-end ukuran">{{ $produk->ukuran }}</p>
-                            <p class="card-text text-center kategori mt-5">{{ $produk->kategori->nama_kategori ?? 'Tidak ada' }}</p>
+                            <p class="card-text text-center kategori mt-auto">{{ $produk->kategori->nama_kategori ?? 'Tidak ada' }}</p>
                             <a href="{{ route('produk.detail', ['id_produk' => $produkItem->id_produk]) }}" class="stretched-link"></a>
                         </div>
                     </div>
@@ -87,8 +116,8 @@
 @endif
 
 <!-- CTA Section -->
-<div class="container cta-container my-5 py-5 rounded">
-    <div class="row align-items-center">
+<div class="container-fluid cta-container  py-5 rounded">
+    <div class="row align-items-center px-5"> 
         <div class="col-md-6">
             <h2 class="fw-bold text-dark">
                 Hadirkan kebahagiaan di setiap gigitan dengan cookies berkualitas dari 
@@ -104,25 +133,47 @@
         </div>
     </div>
 </div>
-<!-- End CTA Section -->
+
 <script>
-document.getElementById('wishlist-btn').addEventListener('click', function() {
-    let produkId = this.getAttribute('data-produk-id');
+    document.getElementById('wishlist-btn').addEventListener('click', function () {
+        let produkId = this.getAttribute('data-produk-id');
+        let sudahDisimpan = this.getAttribute('data-saved') === 'true';
+    
+        let url = sudahDisimpan 
+            ? "{{ route('wishlist.remove') }}" 
+            : "{{ route('wishlist.store') }}";
+    
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({ id_produk: produkId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            location.reload(); 
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
+    function showLoginAlert() {
+    Swal.fire({
+        title: 'Login Diperlukan',
+        text: 'Silakan login terlebih dahulu untuk menyimpan produk.',
+        icon: 'warning',
+        confirmButtonText: 'Login Sekarang',
+        showCancelButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "{{ route('login') }}";
+        }
+    });
+}
 
-        fetch("{{ route('wishlist.store') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}",
-            "Accept": "application/json" // Pastikan Laravel tahu ini request JSON
-        },
-        body: JSON.stringify({ id_produk: produkId })
-    })
-
-    .then(response => response.json())
-    .then(data => alert(data.message))
-    .catch(error => console.error('Error:', error));
-});
 
 </script>
 @endsection  
