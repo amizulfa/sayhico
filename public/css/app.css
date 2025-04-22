@@ -9,12 +9,15 @@
     --font-big: 30px;
     --font-large: 24px;
     --font-medium: 20px;
-    --font-small: 16;
+    --font-small: 16px;
 }
 
 body {
     font-family: var(--font-family);
     color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .title-h1 {
@@ -22,7 +25,7 @@ body {
     font-weight: bold;
 }
 
-/*NAVBAR*/
+/* NAVBAR */
 .navbar-brand,
 .navbar-nav .nav-link {
     color: var(--primary-color) !important;
@@ -34,59 +37,18 @@ body {
     color: white;
 }
 
-
-/*FOOTER*/
-.bg-footer {
-    background-color: var(--primary-color); /* Warna background footer */
-    color: white;    
-}
-
-.bg-footer h4{
-    font-size: var(--font-large);
-}
-
-.bg-footer p{
-    font-size: var(--font-small);
-}
-
-.bg-footer h5{
-    font-size: var(--font-medium);
-}
-
-.bg-footer li{
-    font-size: var(--font-small);
-}
-
-.footer-link {
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.footer-link:hover {
-    color: #DF9755; /* Warna saat hover */
-}
-
-.social-link {
-    color: white;
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-.social-link:hover {
-    color: #DF9755; /* Warna hover ikon sosial */
-}
-
-/*HERO SECTION*/
+/* HERO SECTION */
 .hero-section {
     position: relative;
     color: white;
 }
+
 .hero-section img {
     width: 100%;
     height: auto;
     object-fit: cover;
 }
+
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -97,41 +59,39 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start; 
-    padding-left: 80px; 
+    align-items: flex-start;
+    padding: 80px;
 }
-.hero-overlay h1,
-.hero-overlay p,
-.hero-overlay div {
-    text-align: left; 
-}
+
 .hero-overlay h1 {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
+
 .hero-overlay p {
     font-size: 1.25rem;
     margin-bottom: 30px;
-    max-width: 800px; 
+    max-width: 800px;
 }
+
 .hero-overlay .btnPesan .btnProduk {
     margin-right: 10px;
 }
 
-.hero-overlay .btn1{
+.hero-overlay .btn1 {
     background-color: var(--accent-color);
     border: var(--accent-color);
     color: var(--secondary-color);
 }
 
-.hero-overlay .btn2{
+.hero-overlay .btn2 {
     background-color: var(--brokenwhite-color);
     color: var(--accent-color);
     border: var(--accent-color);
 }
 
-/*PRODUK SECTION*/
+/* PRODUK SECTION */
 .section-title {
     text-align: center;
     font-weight: bold;
@@ -139,13 +99,14 @@ body {
     margin-bottom: 10px;
     font-size: var(--font-big);
 }
+
 .section-title::before,
 .section-title::after {
     content: "";
     position: absolute;
     width: 200px;
-    height: 0; /* Ubah height jadi 0 agar border terlihat */
-    border-top: 2px dashed black; /* Gunakan border-top dashed */
+    height: 0;
+    border-top: 2px dashed black;
     top: 50%;
 }
 
@@ -166,28 +127,32 @@ body {
     max-width: 600px;
     margin: 0 auto 20px;
 }
+
 .product-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .product-card img {
     width: 100%;
     height: auto;
 }
+
 .product-card {
     flex: 1;
     max-width: 250px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
+    margin: 10px;
 }
 
-.product-card:hover{
+.product-card:hover {
     transform: scale(1.1);
 }
 
-.button-container .btn-custom{
+.button-container .btn-custom {
     background-color: var(--accent-color);
     color: white;
     font-weight: bold;
@@ -200,7 +165,7 @@ body {
     margin-top: 20px;
 }
 
-/*TESTIMONI SECTION*/
+/* TESTIMONI SECTION */
 .testimoni {
     background-color: var(--brokenwhite-color);
     padding: 50px 0;
@@ -223,40 +188,12 @@ body {
     text-align: center;
 }
 
-.testimoni .testimonial-card img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 .testimoni .stars {
     color: #f4b400;
     font-size: 16px;
 }
 
-/* Swiper Pagination (Dots) */
-.testimoni .swiper-pagination {
-    position: relative;
-    margin-top: 20px;
-}
-
-.testimoni .swiper-pagination-bullet {
-    background: #572a1e;
-    opacity: 0.5;
-}
-
-.testimoni .swiper-pagination-bullet-active {
-    background: #d2691e;
-    opacity: 1;
-    transform: scale(1.2);
-}
-
-.swiper-slide p {
-    text-align: left;
-}
-
-/*KEUNGGULAN SECTION*/
+/* KEUNGGULAN SECTION */
 .keunggulan h2 {
     font-size: var(--font-big);
     font-weight: bold;
@@ -274,34 +211,19 @@ body {
     width: 100%;
 }
 
-/* "Premium" di kanan atas */
 .premium {
     text-align: right;
     top: 0%;
     right: -1%;
 }
 
-/* "Cookies" di kiri bawah */
 .cookies {
     text-align: left;
     bottom: -10%;
     left: -1%;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .background-text {
-        font-size: 60px;
-    }
-    .premium {
-        top: 15%;
-    }
-    .cookies {
-        bottom: 2%;
-    }
-}
-
-/* PORTFOLIO SECTION*/
+/* PORTFOLIO SECTION */
 .portfolio {
     background-color: var(--brokenwhite-color);
     padding: 50px 0;
@@ -320,6 +242,7 @@ body {
     padding: 20px 0;
     overflow: hidden;
 }
+
 .swiper-slide img {
     width: 100%;
     height: 300px;
@@ -327,7 +250,6 @@ body {
     border-radius: 10px;
 }
 
-/* Pagination Dots untuk Portfolio */
 .portfolio .swiper-pagination {
     position: relative;
     margin-top: 20px;
@@ -348,7 +270,7 @@ body {
     transform: scale(1.2);
 }
 
-/*CTA SECTION*/
+/* CTA SECTION */
 .cta-section-card h2 {
     color: #4A1D1F;
 }
@@ -370,13 +292,14 @@ body {
     margin-bottom: 10px;
     font-size: var(--font-big);
 }
+
 .section-title-cta-card::before,
 .section-title-cta-card::after {
     content: "";
     position: absolute;
     width: 150px;
-    height: 0; /* Ubah height jadi 0 agar border terlihat */
-    border-top: 2px solid var(--accent-color); /* Gunakan border-top dashed */
+    height: 0;
+    border-top: 2px solid var(--accent-color);
     top: 50%;
 }
 
@@ -392,36 +315,32 @@ body {
 
 .floating-img-card {
     position: absolute;
-    top: -40px;  /* Sesuaikan agar lebih ke atas */
-    left: -100px; /* Sesuaikan agar lebih ke kiri */
-    width: 500px; /* Sesuaikan ukuran */
+    top: -40px;
+    left: -100px;
+    width: 450px;
     animation: floatAnimation 3s infinite ease-in-out;
 }
 
-.cta-section-card .container{
-    margin-left: 180px; /* Geser teks ke kanan agar jauh dari gambar */
+.cta-section-card .container {
+    margin-left: 180px;
 }
 
 .product-card-card {
     background: white;
     border-radius: 30px;
     box-shadow: 1px 2px 5px 5px #dfdfdf;
- 
 }
 
-/* Judul Produk */
 .product-title-card {
     font-size: 20px;
     font-weight: bold;
     color: #5a3e36;
 }
 
-/* Gambar Produk */
 .product-images-card {
     display: flex;
-    gap: 10px; /* Mengurangi jarak antara teks dan gambar */
+    gap: 10px;
 }
-
 
 .product-img-card {
     width: 180px;
@@ -434,7 +353,7 @@ body {
     transform: scale(1.1);
 }
 
-.cta-section-card .product-title-card{
+.cta-section-card .product-title-card {
     font-size: var(--font-big);
 }
 
@@ -444,14 +363,128 @@ body {
 }
 
 .product-images-card h2 {
-    writing-mode: vertical-rl; /* Membuat teks vertikal */
-    transform: rotate(180deg); /* Memastikan orientasi tetap terbaca */
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
     font-weight: 900;
     font-size: 50px;
     text-align: center;
-    margin-right: -5px; 
-    margin-left: -5px; 
+    margin-right: -5px;
+    margin-left: -5px;
     color: black;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.541);
 }
 
+/* FOOTER */
+.bg-footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.bg-footer h4 {
+    font-size: var(--font-large);
+}
+
+.bg-footer p,
+.bg-footer h5,
+.bg-footer li {
+    font-size: var(--font-small);
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-link:hover {
+    color: #DF9755;
+}
+
+.social-link {
+    color: white;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.social-link:hover {
+    color: #DF9755;
+}
+
+/* RESPONSIVE */
+@media (max-width: 412px) {
+
+    body{
+        overflow-x: hidden;
+    }
+    
+    .hero-section img {
+        height: 300px;
+    }
+
+    .hero-overlay {
+        padding: 30px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-overlay h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero-overlay p {
+        font-size: 1rem;
+    }
+
+    .product-card {
+        max-width: 90%;
+    }
+
+    .section-title::before,
+    .section-title::after {
+        content: "";
+        position: absolute;
+        width: 10%; /* bisa disesuaikan lagi */
+        height: 0;
+        border-top: 2px dashed black;
+        top: 80%;
+    }
+
+    .cta-section-card .container {
+        margin: 0 20px;
+        text-align: center;
+    }
+
+    .floating-img-card {
+        display: block;
+        top: -40px;
+        left: -100px;
+        width: 200px;
+        animation: floatAnimation 3s infinite ease-in-out;
+    }
+
+    .product-images-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-images-card h2 {
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin: 0;
+        font-size: 30px;
+    }
+
+    .background-text {
+        font-size: 60px;
+    }
+
+    .premium {
+        top: 15%;
+    }
+
+    .cookies {
+        bottom: 2%;
+    }
+}
