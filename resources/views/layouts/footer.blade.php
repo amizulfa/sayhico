@@ -46,9 +46,9 @@
                 </div>
     
                 <!-- Media Sosial -->
-                <div class="col-md-3 gap-5">
-                    <h5 class="">Media Sosial</h5>
-                    <div class="d-flex gap-3">
+                <div class="col-md-3 text-center mt-4 mt-md-0">
+                    <h5 class="mb-3">Media Sosial</h5>
+                    <div class="d-flex justify-content-center gap-3">
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>

@@ -172,3 +172,64 @@ h3 {
     margin-top: 200px;;
 }
 
+@media (max-width: 412px) {
+    .img-container {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .img-detail {
+        width: 95%;
+    }
+
+    .produk-container {
+        margin: 0;
+        margin-top: 30px;
+        text-align: justify;
+    }
+
+    .btn-pesan {
+        margin-top: 20px;
+    }
+
+    .produk-container .btn,
+    .produk-container .btn-success {
+        width: 100%;
+        text-align: center;
+    }
+
+    .img-thumbnail {
+        width: 70px !important;
+    }
+
+    .cta-container .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cta-buttons .cta-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .btn-back {
+        padding-left: 0;
+    }
+
+    .card img {
+        height: auto;
+        max-height: 160px;
+    }
+
+    .card-body .text-end {
+        text-align: center !important;
+    }
+
+    .card-body p {
+        text-align: center;
+    }
+
+    .cta-image {
+        margin-top: 20px;
+    }
+}

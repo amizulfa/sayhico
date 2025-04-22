@@ -59,10 +59,6 @@
     border-radius: 8px;
 }
 
-/* ========================== */
-/* == 2. CTA (Call to Action) == */
-/* ========================== */
-
 .cta-section {
     position: relative;
     margin-top: 50px;
@@ -130,42 +126,27 @@
 /* == 3. RESPONSIVE DESIGN == */
 /* ========================== */
 
-@media (max-width: 768px) {
-    .testimonial-card {
-        padding: 15px;
+@media (max-width: 412px) {
+    .filter-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
     }
 
-    .product-images img {
-        width: 70px;
-        height: 70px;
+    .filter-container select.btn {
+        font-size: 12px;
+        padding: 6px 10px;
+        white-space: normal;
+        height: auto;
+        text-align: center;
+        max-width: 100%;
     }
 
-    .cta-section img {
-        height: 300px;
-    }
-
-    .cta-content h2 {
-        font-size: 20px;
-    }
-
-    .cta-content p {
-        font-size: 14px;
+    .filter-container select.btn option {
+        font-size: 12px;
+        max-width: 100%;
+        word-wrap: break-word;
     }
 }
 
-.filter-btn {
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-}
 
-.filter-btn.active {
-    background-color: #fdd835;
-    color: white;
-}
-
-.rating {
-    color: #fdd835;
-    font-size: 16px;
-}

@@ -70,3 +70,13 @@
 .portfolio-item img:hover {
     transform: scale(1.05);
 }
+
+@media (max-width: 412px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .portfolio-item img {
+        height: 160px;
+    }
+}

@@ -77,8 +77,7 @@
                     @endforeach
                 </div>
     
-                <!-- Pagination (Dots) -->
-                <div class="swiper-pagination"></div>
+                
             </div>
         </div>
     </section>
@@ -159,16 +158,17 @@
             <h2 class="section-title-cta-card fw-bold mb-3">Hubungi Kami Untuk Memesan</h2>
     
             <!-- Bagian Kontak -->
-            <div class="contact-info-card d-flex justify-content-center align-items-center pt-5 gap-5">
-                <div class="contact-item-card d-flex align-items-center gap-2">
-                    <i class="fa-brands fa-whatsapp fa-beat custom-icon-card mr-3"></i>
-                    <span class="contact-text-card">+62 81295923115</span>
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 text-center">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fab fa-whatsapp fa-lg"></i>
+                    <span>+62 81295923115</span>
                 </div>
-                <div class="contact-item-card d-flex align-items-center gap-2">
-                    <i class="fa-brands fa-instagram fa-beat custom-icon-card mr-3"></i>
-                    <span class="contact-text-card">Say_Hi.Co</span>
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fab fa-instagram fa-lg"></i>
+                    <span>Say_Hi.Co</span>
                 </div>
             </div>
+            
     
             <!-- Teks CTA -->
             <p class="cta-text-card mt-3">Cookies istimewa untuk Setiap Kesempatan – Pilih, Pesan, Nikmati!</p>
@@ -214,7 +214,7 @@
             breakpoints: {
                 992: { slidesPerView: 3 }, /* 3 item di layar besar */
                 768: { slidesPerView: 2 }, /* 2 item di tablet */
-                576: { slidesPerView: 1 }  /* 1 item di HP */
+                400: { slidesPerView: 1 }  /* 1 item di HP */
             }
         });
     </script>
@@ -236,7 +236,7 @@
             breakpoints: {
                 992: { slidesPerView: 3 }, /* 3 testimoni di layar besar */
                 768: { slidesPerView: 2 }, /* 2 testimoni di tablet */
-                576: { slidesPerView: 1 }  /* 1 testimoni di HP */
+                400: { slidesPerView: 1 }  /* 1 testimoni di HP */
             }
         });
     </script>

@@ -8,6 +8,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
+<style>
+    /* Ganti warna ikon hamburger menjadi oranye */
+    .custom-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23f57c00' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22' /%3E%3C/svg%3E");
+    }
+
+    /* Opsional: hilangkan border default biar lebih clean */
+    .custom-toggler {
+        border: none;
+    }
+
+</style>
 <body>
     <nav class="navbar navbar-expand-lg bg-white border-bottom border-dark">
         <div class="container">
@@ -17,10 +29,11 @@
             </a>
 
             <!-- Toggle button for mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
             </button>
+
 
             <!-- Menu Navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -60,45 +73,40 @@
                             Kontak Kami
                         </a>
                     </li>
+                    <li class="nav-item">
+                        @auth
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-user fa-xl"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profil.index') }}">
+                                        <i class="fa-solid fa-user"></i> Profil Saya
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('wishlist.index') }}">
+                                        <i class="fa-solid fa-heart text-danger"></i> Wishlist
+                                    </a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="fa-solid fa-sign-out-alt"></i> Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>                  
+                        
+                        @else
+                        <!-- Jika User Belum Login -->
+                        <a href="{{ route('login') }}" class="btn btn-masuk px-4 fw-bold">Masuk</a>
+                        @endauth
+                    </li>
                 </ul>
-
-                <!-- Tombol Masuk / Ikon User -->
-                <div class="ms-4">
-                    <!-- Jika User Login -->
-                    @auth
-                    <div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-circle-user fa-xl"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('profil.index') }}">
-                                    <i class="fa-solid fa-user"></i> Profil Saya
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('wishlist.index') }}">
-                                    <i class="fa-solid fa-heart text-danger"></i> Wishlist
-                                </a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="fa-solid fa-sign-out-alt"></i> Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>                  
-                    
-                    @else
-                    <!-- Jika User Belum Login -->
-                    <a href="{{ route('login') }}" class="btn btn-masuk px-4 fw-bold">Masuk</a>
-                    @endauth
-
-                </div>
-
             </div>
         </div>
     </nav>

@@ -23,22 +23,28 @@
     <div class="row">         
         <!-- Gambar Produk -->         
         <div class="col-md-6 img-container">             
-            <img src="{{ asset('storage/' .$produk->gambar_produk) }}" class="img-detail" alt="{{ $produk->nama_produk }}">             
+            <img id="mainImage" src="{{ asset('storage/' .$produk->gambar_produk) }}" class="img-detail" alt="{{ $produk->nama_produk }}">
             <div class="d-flex mt-3">                 
                 <!-- Thumbnail Gambar Lain -->                 
                 @if ($produk->gambar_produk2)
-                    <img src="{{ asset('storage/' .$produk->gambar_produk2) }}" class="img-thumbnail mx-1" style="width: 80px;">
+                    <img src="{{ asset('storage/' .$produk->gambar_produk2) }}" 
+                        class="img-thumbnail mx-1 thumbnail-img" 
+                        style="width: 80px;" 
+                        data-src="{{ asset('storage/' .$produk->gambar_produk2) }}">
                 @endif
 
                 @if ($produk->gambar_produk3)
-                    <img src="{{ asset('storage/' . $produk->gambar_produk3) }}" class="img-thumbnail mx-1" style="width: 80px;">
+                    <img src="{{ asset('storage/' .$produk->gambar_produk3) }}" 
+                        class="img-thumbnail mx-1 thumbnail-img" 
+                        style="width: 80px;" 
+                        data-src="{{ asset('storage/' .$produk->gambar_produk3) }}">
                 @endif
+
             </div>         
         </div>          
 
-        <div class="col-md-6 produk-container">
+        <div class="col-md-6 produk-container px-4">
             <h2 class="fw-bold text-dark">{{ $produk->nama_produk }}</h2>
-            <p class="text-warning"> ⭐⭐⭐⭐⭐ </p>
             <h3 class="fw-bold">Rp {{ number_format((int) str_replace(['.', ','], '', $produk->harga), 0, ',', '.') }}</h3>
             <p class="text-dark"><strong>Ukuran:</strong> {{ $produk->ukuran }}</p>
             <p class="text-dark deskripsi-produk">{{ $produk->deskripsi }}</p>
@@ -173,9 +179,25 @@
         }
     });
 }
-
-
 </script>
+
+<script>
+    document.querySelectorAll('.thumbnail-img').forEach(function (thumbnail) {
+        thumbnail.addEventListener('click', function () {
+            const mainImage = document.getElementById('mainImage');
+
+            // Simpan src sekarang
+            const currentMainSrc = mainImage.src;
+            const newMainSrc = this.src;
+
+            // Tukar src
+            mainImage.src = newMainSrc;
+            this.src = currentMainSrc;
+        });
+    });
+</script>
+
+
 @endsection  
 
 @section('styles')     

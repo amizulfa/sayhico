@@ -51,13 +51,20 @@
 </div>
 
 <script>
-    document.getElementById("search").addEventListener("keyup", function() {
-        let searchValue = this.value.toLowerCase();
-        document.querySelectorAll(".produk-item").forEach(function(item) {
-            let productName = item.querySelector(".card-title").textContent.toLowerCase();
-            item.style.display = productName.includes(searchValue) ? "block" : "none";
-        });
+    document.getElementById("search").addEventListener("keyup", function () {
+    let searchValue = this.value.toLowerCase();
+    document.querySelectorAll(".produk-item").forEach(function (item) {
+        let productName = item.querySelector(".card-title").textContent.toLowerCase();
+        if (productName.includes(searchValue)) {
+            item.classList.remove("d-none");
+            item.classList.add("d-flex");
+        } else {
+            item.classList.add("d-none");
+            item.classList.remove("d-flex");
+        }
     });
+});
+
 
     document.getElementById("sort").addEventListener("change", function() {
         let sortValue = this.value;
