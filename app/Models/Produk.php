@@ -17,7 +17,8 @@ class Produk extends Model
         'deskripsi',
         'gambar_produk',
         'ukuran',
-        'id_kategori'
+        'id_kategori',
+        'best_seller'
     ];
 
     // Relasi ke tabel kategori (Setiap produk memiliki satu kategori)

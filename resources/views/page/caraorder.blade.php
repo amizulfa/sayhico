@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('landingpage') 
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 150px;">
         <h1 class="mb-5 font-weight-bold text-center title-h1">
             Cara Order
            </h1>

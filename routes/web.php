@@ -12,6 +12,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\KontakController;
 
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AdminKategoriController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\admin\AdminTestimoniController;
 use App\Http\Controllers\admin\AdminPortfolioController;
 use App\Http\Controllers\admin\AdminKategoriFaqController;
 use App\Http\Controllers\admin\AdminFaqController;
+use App\Http\Controllers\admin\AdminPesanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,7 @@ Route::get('/tentangkami', [TentangKamiController::class, 'index'])->name('tenta
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
 Route::get('/produk/{id_produk}', [ProductController::class, 'show'])->name('produk.detail');
+Route::post('/kontak-kami', [KontakController::class, 'kirim'])->name('kontak.kirim');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -117,5 +120,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/faqs/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin.faqs.edit');
     Route::post('/faqs/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faqs.update');
     Route::delete('/faqs/delete/{id}', [AdminFaqController::class, 'destroy'])->name('admin.faqs.destroy');
+
+    Route::get('/pesan', [AdminPesanController::class, 'index'])->name('admin.pesan');
+    Route::post('/pesan/{id}/baca', [AdminPesanController::class, 'baca'])->name('pesan.baca');
+    Route::get('/pesan/{id}/detail', [AdminPesanController::class, 'show'])->name('pesan.detail');
 });
 

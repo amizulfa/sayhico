@@ -13,17 +13,23 @@
         }
         .sidebar {
             width: 230px;
-            transition: width 0.3s ease-in-out;
+            background-color: #EE9974;;
+            transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            top: 63px;
         }
         .sidebar.collapsed {
-            width: 55px;
+            width: 100px;
         }
 
         .sidebar .nav-link {
             display: flex;
             align-items: center;
-            padding: 10px 15px;
+            padding: 12px 20px;
             font-size: 16px;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 2px 10px; /* <-- Kasih margin kiri-kanan */
+            border-radius: 8px; /* <-- Biar kotak rounded */
         }
         .sidebar .nav-link i {
             width: 20px;
@@ -36,6 +42,11 @@
             opacity: 0;
             width: 0;
             overflow: hidden;
+        }
+        .sidebar .nav-link.active {
+            background-color: #ffffff;
+            color: #e78a5f !important;
+            font-weight: 600;
         }
         .logo-small {
             width: 30px;
@@ -59,7 +70,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top" style="background-color: #ffffff;">
         <div class="container-fluid">
             <img id="logoSmall" src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-small me-2">
             <button id="toggleSidebar" class="btn btn-light me-3">
@@ -74,7 +85,7 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="dropdown-item me-4">
-                        <i class="fa-solid fa-sign-out-alt " style="color: #ff0000;"></i>
+                        <i class="fa-solid fa-sign-out-alt" style="color: #ff0000;"></i>
                     </button>
                 </form>
             </div>
@@ -82,35 +93,39 @@
     </nav>
 
     <div class="d-flex mt-5">
-        <div id="sidebar" class="sidebar bg-white vh-100 position-fixed shadow">
+        <div id="sidebar" class="sidebar vh-100 position-fixed shadow">
             <nav class="nav flex-column pt-3">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link text-light {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="fa-solid fa-house"></i>
                     <span class="text ms-2">Dashboard</span>
                 </a>
-                <a href="{{ route('admin.kategori') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.kategori') }}" class="nav-link text-light {{ request()->routeIs('admin.kategori') ? 'active' : '' }}">
                     <i class="fa-solid fa-box"></i>
                     <span class="text ms-2">Kategori Produk</span>
                 </a>
-                <a href="{{ route('admin.produk') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.produk') }}" class="nav-link text-light {{ request()->routeIs('admin.produk') ? 'active' : '' }}">
                     <i class="fa-solid fa-basket-shopping"></i>
                     <span class="text ms-2">Produk</span>
                 </a>
-                <a href="{{ route('admin.testimoni') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.testimoni') }}" class="nav-link text-light {{ request()->routeIs('admin.testimoni') ? 'active' : '' }}">
                     <i class="fa-solid fa-comments"></i>
                     <span class="text ms-2">Testimoni</span>
                 </a>
-                <a href="{{ route('admin.portfolio') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.portfolio') }}" class="nav-link text-light {{ request()->routeIs('admin.portfolio') ? 'active' : '' }}">
                     <i class="fa-solid fa-briefcase"></i>
                     <span class="text ms-2">Portfolio</span>
                 </a>
-                <a href="{{ route('admin.kategorifaqs') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.kategorifaqs') }}" class="nav-link text-light {{ request()->routeIs('admin.kategorifaqs') ? 'active' : '' }}">
                     <i class="fa-solid fa-window-restore"></i>
                     <span class="text ms-2">Kategori FAQs</span>
                 </a>
-                <a href="{{ route('admin.faqs') }}" class="nav-link text-dark">
+                <a href="{{ route('admin.faqs') }}" class="nav-link text-light {{ request()->routeIs('admin.faqs') ? 'active' : '' }}">
                     <i class="fa-solid fa-question-circle"></i>
                     <span class="text ms-2">FAQs</span>
+                </a>
+                <a href="{{ route('admin.pesan') }}" class="nav-link text-light {{ request()->routeIs('admin.pesan') ? 'active' : '' }}">
+                    <i class="fa-solid fa-message"></i>
+                    <span class="text ms-2">Pesan</span>
                 </a>
             </nav>
         </div>
@@ -118,6 +133,7 @@
             @yield('content')
         </div>
     </div>
+
     <script>
         const sidebar = document.getElementById("sidebar");
         const content = document.getElementById("content");
@@ -129,19 +145,19 @@
             content.classList.toggle("full");
 
             if (sidebar.classList.contains("collapsed")) {
-                logoSmall.style.display = "none"; 
+                logoSmall.style.display = "none";
                 toggleButton.style.marginLeft = "0";
             } else {
-                logoSmall.style.display = "inline"; 
-                toggleButton.style.marginLeft = "130px"; 
+                logoSmall.style.display = "inline";
+                toggleButton.style.marginLeft = "130px";
             }
         });
 
         window.addEventListener("DOMContentLoaded", () => {
-            sidebar.classList.remove("collapsed"); 
-            content.classList.remove("full"); 
-            logoSmall.style.display = "inline"; 
-            toggleButton.style.marginLeft = "130px"; 
+            sidebar.classList.remove("collapsed");
+            content.classList.remove("full");
+            logoSmall.style.display = "inline";
+            toggleButton.style.marginLeft = "130px";
         });
     </script>
 

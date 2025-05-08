@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('landingpage') 
-<div class="container mt-5">
+<div class="container" style="margin-top: 150px;">
     <div class="contact-section container text-center">
         <h1 class="mb-5 font-weight-bold text-center title-h1 mt-5">
             Kontak Kami
@@ -45,15 +45,23 @@
         <div class="contact-form">
             <h2>HUBUNGI <span>KAMI</span></h2>
             <p>Punya pertanyaan, ingin memesan cookies favoritmu, atau tertarik untuk berkolaborasi? Kami siap menyapa dan bekerja sama denganmu!</p>
+            
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
 
-            <form  method="POST">
+            <form method="POST" action="{{ route('kontak.kirim') }}">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" class="form-control mb-3" name="first_name" placeholder="Nama Depan" required>
+                        <input type="text" class="form-control mb-3" name="firstname" placeholder="Nama Depan" required>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control mb-3" name="last_name" placeholder="Nama Belakang">
+                        <input type="text" class="form-control mb-3" name="lastname" placeholder="Nama Belakang">
                     </div>
                 </div>
                 <div class="row">
@@ -74,4 +82,5 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/page/kontakkami.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

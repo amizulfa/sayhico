@@ -2,7 +2,7 @@
 
 @section('landingpage')
     @php
-        $testimoni = \App\Models\Testimoni::with('kategori')->orderBy('waktu_pembelian', 'desc')->get();
+        $testimoni = \App\Models\Testimoni::get();
 
     @endphp
     

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('landingpage')
-<div class="pt-5 pb-5 d-flex justify-content-center align-items-center" style="min-height: 100vh; background: #f9f9fc;">
+<div class="pt-5 pb-5 d-flex justify-content-center align-items-center" style="min-height: 150vh; background: #f9f9fc; margin-top:100px;">
     <div class="card shadow p-4" style="width: 420px; border-radius: 20px; border: none;">
         <div class="text-center mb-4">
             <div class="mb-3">

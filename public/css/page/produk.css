@@ -1,31 +1,105 @@
-.produk-container .card-text {
-    color: var(--accent-color);
+
+/* --- Responsif Card Produk --- */
+@media (max-width: 412) {
+    .card-produk {
+        width: 100% !important;
+    }
 }
 
-.produk-container .card-title {
-    max-width: 250px;
-}
-
-.produk-container .harga {
-    max-width: 150px;
-}
-
-.produk-container .card-produk {
+/* --- Struktur Card --- */
+.card-produk {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-shadow: 5px 5px 8px rgb(128, 128, 128);
 }
 
+/* --- Gambar Produk --- */
 .card-produk img {
-    width: 100%; /* Mengisi lebar card */
-    height: 200px; /* Atur tinggi gambar */
-    object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.produk-container h1 {
+/* --- Card Body Produk --- */
+.card-produk .card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+/* --- Nama Produk --- */
+.card-produk .card-title {
+    font-weight: bold;
+    text-align: left;
+    min-height: 48px; /* Jaga tinggi konsisten */
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.produk-deskripsi {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Batasi 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    color: #ababab;
+    min-height: 2.8em; /* Biar semua kotak rata meski teks sedikit */
+}
+
+/* --- Harga Produk --- */
+.card-produk .harga {
+    font-weight: bold;
+    color: var(--accent-color);
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 8px 0;
+}
+
+/* --- Ukuran Produk --- */
+.card-produk .ukuran {
+    font-weight: bold;
+    color: var(--accent-color);
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 4px 0;
+}
+
+/* --- Kategori Produk --- */
+.card-produk .kategori {
+    font-weight: bold;
+    color: var(--accent-color);
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0;
+}
+
+/* Biar rapi button + title */
+.container.d-flex {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Tombol back lebih kecil dikit */
+.btn-back {
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Title Produk */
+h1 {
     color: black;
     font-weight: bold;
     font-size: var(--font-verybig);
+    margin: 0; /* Buang margin default */
 }
 
-.btn-back a{
-    text-decoration: none;
-}

@@ -1,7 +1,40 @@
 @extends('layouts.layout')
 
 @section('landingpage') 
-<div class="container mt-5">
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    .card-header {
+        background: white;
+        border-bottom: none;
+    }
+    .btn-link {
+        width: 100%;
+        text-decoration: none !important;
+        color: black !important;
+        padding: 15px;
+        font-size: 16px;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .btn-link:hover, 
+    .btn-link:focus, 
+    .btn-link:active {
+        color: black !important;
+        text-decoration: none !important;
+        box-shadow: none;
+    }
+    .arrow {
+        transition: transform 0.3s ease;
+    }
+</style>
+
+<div class="container" style="margin-top: 150px;">
     <h1 class="font-weight-bold text-center title-h1">
         Frequently Asked Questions
     </h1>
@@ -53,47 +86,17 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-    .card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        margin-bottom: 10px;
-    }
-    .card-header {
-        background: white;
-        border-bottom: none;
-    }
-    .btn-link {
-        width: 100%;
-        text-decoration: none;
-        color: black;
-        padding: 15px;
-        font-size: 16px;
-    }
-    .btn-link:hover {
-        text-decoration: none;
-    }
-    .arrow {
-        transition: transform 0.3s ease;
-    }
-    .collapsed .arrow {
-        transform: rotate(0deg);
-    }
-    .collapse.show .arrow {
-        transform: rotate(90deg);
-    }
-</style>
-
 <script>
     $(document).ready(function () {
-        // Toggle arrow icons
-        $('.btn-link').on('click', function () {
-            let icon = $(this).find('.arrow');
-            if ($(this).attr('aria-expanded') === "true") {
-                icon.removeClass('fa-chevron-right').addClass('fa-chevron-down');
-            } else {
-                icon.removeClass('fa-chevron-down').addClass('fa-chevron-right');
-            }
+        // Arrow toggle fix
+        $('#faqAccordion').on('show.bs.collapse', function (e) {
+            $(e.target).prev('.card-header').find('.arrow')
+                .removeClass('fa-chevron-right')
+                .addClass('fa-chevron-down');
+        }).on('hide.bs.collapse', function (e) {
+            $(e.target).prev('.card-header').find('.arrow')
+                .removeClass('fa-chevron-down')
+                .addClass('fa-chevron-right');
         });
 
         // Search functionality
@@ -117,5 +120,6 @@
         });
     });
 </script>
+
 
 @endsection

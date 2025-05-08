@@ -29,7 +29,6 @@ body {
 .navbar-brand,
 .navbar-nav .nav-link {
     color: var(--primary-color) !important;
-    font-size: var(--font-title);
 }
 
 .navbar .btn-masuk {
@@ -37,13 +36,20 @@ body {
     color: white;
 }
 
-/* HERO SECTION */
-.hero-section {
-    position: relative;
+.navbar .btn-masuk:hover {
+    background-color: #bc7a5b;
     color: white;
 }
 
-.hero-section img {
+/* HERO SECTION */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Atur tinggi sesuai kebutuhan */
+    overflow: hidden;
+}
+
+.hero-section .swiper-slide img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -51,44 +57,78 @@ body {
 
 .hero-overlay {
     position: absolute;
+    background-color: rgba(215, 148, 148, 0.416);
+    height: 600px;
+    width: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(215, 148, 148, 0.24);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 80px;
+    align-items: flex-start; /* Mengubah agar teks rata kiri */
+    justify-content: center; /* Tetap vertikal di tengah */
+    text-align: left; /* Mengubah text-align ke kiri */
+    color: white;
+    z-index: 10;
+    padding: 80px; /* Menambahkan padding di dalam hero overlay */
 }
 
-.hero-overlay h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.hero-overlay p {
+/* Pengaturan Slide 1 (Rata Kiri) */
+.swiper-slide.slide-left .hero-overlay {
+    align-items: flex-start; /* Teks rata kiri */
+    text-align: left; /* Teks rata kiri */
     font-size: 1.25rem;
-    margin-bottom: 30px;
-    max-width: 800px;
 }
 
-.hero-overlay .btnPesan .btnProduk {
-    margin-right: 10px;
+/* Pengaturan Slide 2 (Rata Tengah) */
+.swiper-slide.slide-center .hero-overlay {
+    align-items: center; /* Teks di tengah secara vertikal */
+    text-align: center; /* Teks rata tengah */
+    left: 50%;
+    transform: translateX(-50%); /* Pusatkan secara horizontal */
+    font-size: 1.25rem;
 }
 
-.hero-overlay .btn1 {
-    background-color: var(--accent-color);
-    border: var(--accent-color);
-    color: var(--secondary-color);
+/* Pengaturan Slide 3 (Rata Kanan) */
+.swiper-slide.slide-right .hero-overlay {
+    align-items: flex-end; /* Teks rata kanan */
+    text-align: right; /* Teks rata kanan */
+    right: 10%; /* Sesuaikan posisi */
+    font-size: 1.25rem;
 }
 
-.hero-overlay .btn2 {
-    background-color: var(--brokenwhite-color);
-    color: var(--accent-color);
-    border: var(--accent-color);
+.hero-overlay .btn {
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.hero-overlay .btn1:hover,
+.hero-overlay .btn2:hover {
+    background-color: #bc7a5b;
+    color: white;
+}
+
+
+.swiper-pagination {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+    background-color: white;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+    background-color: #ff6600; /* Ganti dengan warna yang diinginkan */
 }
 
 /* PRODUK SECTION */
@@ -146,6 +186,8 @@ body {
     text-align: center;
     transition: transform 0.3s ease-in-out;
     margin: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
 .product-card:hover {
@@ -153,11 +195,16 @@ body {
 }
 
 .button-container .btn-custom {
-    background-color: var(--accent-color);
     color: white;
     font-weight: bold;
-    border-radius: 50px;
-    width: 150px;
+    border-radius: 10px;
+    width: 200px;
+    background-color: var(--primary-color);
+}
+
+.button-container .btn-custom:hover {
+    background-color: #bc7a5b;
+    color: white;
 }
 
 .button-container {
@@ -191,6 +238,19 @@ body {
 .testimoni .stars {
     color: #f4b400;
     font-size: 16px;
+}
+
+.btn-testimoni .btn-custom {
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 200px;
+    background-color: var(--primary-color);
+}
+
+.btn-testimoni .btn-custom:hover {
+    background-color: #bc7a5b;
+    color: white;
 }
 
 /* KEUNGGULAN SECTION */
@@ -268,6 +328,19 @@ body {
     background: #d2691e;
     opacity: 1;
     transform: scale(1.2);
+}
+
+.btn-portfolio .btn-custom {
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 200px;
+    background-color: var(--primary-color);
+}
+
+.btn-portfolio .btn-custom:hover {
+    background-color: #bc7a5b;
+    color: white;
 }
 
 /* CTA SECTION */
@@ -376,7 +449,7 @@ body {
 
 /* FOOTER */
 .bg-footer {
-    background-color: var(--primary-color);
+    background-color: #EE9974;
     color: white;
     padding: 30px 20px;
     text-align: center;
@@ -399,7 +472,9 @@ body {
 }
 
 .footer-link:hover {
-    color: #DF9755;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
 }
 
 .social-link {
@@ -409,7 +484,9 @@ body {
 }
 
 .social-link:hover {
-    color: #DF9755;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
 }
 
 /* RESPONSIVE */
@@ -419,26 +496,60 @@ body {
         overflow-x: hidden;
     }
     
-    .hero-section img {
-        height: 300px;
+    .hero-section {
+        height: 40vh;
+        min-height: 400px;
     }
-
+    
     .hero-overlay {
-        padding: 30px;
-        align-items: center;
-        text-align: center;
+        padding: 0 5%;
+        justify-content: flex-end;
+        padding-bottom: 80px;
+        height: 40vh;
+        
     }
-
+    
     .hero-overlay h1 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
-
+    
     .hero-overlay p {
-        font-size: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero-overlay .btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .swiper-pagination {
+        bottom: 10%;
+    }
+    
+    .hero-buttons {
+        gap: 10px;
+    }
+    
+
+    .hero-section .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
     }
 
+    .product-container {
+        flex-direction: column; /* Stack cards vertically */
+    }
+    
     .product-card {
-        max-width: 90%;
+        flex: 1 1 auto; /* Allow cards to grow and shrink */
+        max-width: 80%; /* Take full width of container */
+        margin: 10px 0; /* Adjust margins for vertical stacking */
     }
 
     .section-title::before,

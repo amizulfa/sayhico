@@ -113,7 +113,30 @@
 
     /* KEUNGGULAN SECTION */
     .keunggulan h2 {
-        font-size: 24px;
+        font-size: 28px;
         font-weight: bold;
+    }
+    
+    .target-market li::before {
+        content: "✔";
+        color: #c87137;
+        margin-right: 8px;
+    }
+    
+    .target-market-section .target-card {
+        background: #fff7f0;
+        border: 1px solid #ffe3cd;
+        border-radius: 16px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .target-market-section .target-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .target-market-section img {
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
     

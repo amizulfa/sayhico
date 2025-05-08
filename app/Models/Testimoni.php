@@ -9,23 +9,13 @@ class Testimoni extends Model
 {
     use HasFactory;
 
-    protected $table = 'testimoni'; 
+    protected $table = 'testi';
+
     protected $primaryKey = 'id_testi';
     public $timestamps = false;
 
     protected $fillable = [
-        'nama_pembeli',
-        'waktu_pembelian',
-        'variasi',
-        'deskripsi',
-        'rating',
-        'gambar_testi',
-        'id_kategori',
+        'media',
+        'platform',
     ];
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
-    }
-
 }

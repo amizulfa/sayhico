@@ -10,43 +10,79 @@
     
 </head>
 <body>
-    <div class="hero-section">
-        <img src="{{ asset('images/hero.jpg') }}" alt="A box of homemade cookies with cloves and cinnamon sticks around it">
-        <div class="hero-overlay">
-            <h1>Homemade Cookies With Premium Taste</h1>
-            <p>Satu gigitan tidak akan cukup, rasakan kenikmatan dan kelezatan cookies homemade berkualitas tinggi yang membuatmu ingin lagi dan lagi!</p>
-            <div>
-                <a href="#" class="btn btn1">Pesan Sekarang</a>
-                <a href="#" class="btn btn2">Lihat Produk</a>
+    <div class="swiper-container hero-section">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide slide-left">
+                <img src="{{ asset('images/hero/hero.jpg') }}">
+                <div class="hero-overlay">
+                    <h1>Homemade Cookies With Premium Taste</h1>
+                    <p>Satu gigitan tidak akan cukup, rasakan kenikmatan dan kelezatan cookies homemade berkualitas tinggi yang membuatmu ingin lagi dan lagi!</p>
+                    <div>
+                        <a href="#" class="btn btn1">Pesan Sekarang</a>
+                        <a href="{{ route('kategoriproduk.index') }}" class="btn btn2">Lihat Produk</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide slide-center">
+                <img src="{{ asset('images/hero/hero2.jpg') }}">
+                <div class="hero-overlay">
+                    <h1>Temukan berbagai varian rasa khas kami</h1>
+                    <p>Green Tea, Crescent, hingga Putri Salju, dan nikmati cookies premium dengan harga yang tetap terjangkau.</p>
+                    <div>
+                        <a href="{{ route('kategoriproduk.index') }}" class="btn btn2">Lihat Produk</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide slide-right">
+                <img src="{{ asset('images/hero/hero3.jpg') }}">
+                <div class="hero-overlay">
+                    <h1>Rasakan Cookies Premium dengan Harga Terjangkau</h1>
+                    <p>Dapatkan rasa autentik dengan bahan alami terbaik dan tanpa pengawet, semua dengan harga yang tetap terjangkau untuk semua kalangan.</p>
+                    <div>
+                        <a href="#" class="btn btn1">Pesan Sekarang</a>
+                        <a href="{{ route('kategoriproduk.index') }}" class="btn btn2">Lihat Produk</a>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
     </div>
+    
     
     <section class="container my-5">
         <h2 class="section-title">Apa Saja Produk Say_Hi.Co?</h2>
         <p class="section-subtitle">
             Nikmati berbagai pilihan cookies homemade dengan bahan premium, cita rasa yang tak terlupakan dengan harga yang terjangkau.
         </p>
-
+    
         <div class="product-container my-5">
             <div class="product-card">
+                <div class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Best Seller</div>
                 <img src="{{ asset('images/landingpage/2.jpg') }}" alt="Cookies 1">
             </div>
             <div class="product-card">
+                <div class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Best Seller</div>
                 <img src="{{ asset('images/landingpage/3.jpg') }}" alt="Cookies 2">
             </div>
             <div class="product-card">
+                <div class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Best Seller</div>
                 <img src="{{ asset('images/landingpage/4.jpg') }}" alt="Cookies 3">
             </div>
             <div class="product-card">
+                <div class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Best Seller</div>
                 <img src="{{ asset('images/landingpage/1.jpg') }}" alt="Cookies 4">
             </div>
         </div>
-
+    
         <div class="button-container">
-            <a class="btn btn-custom" href="{{ route('kategoriproduk.index') }}">Lihat Produk</a>
+            <a class="btn btn-custom" href="{{ route('kategoriproduk.index') }}">Lihat Semua Produk</a>
         </div>
     </section>
+    
 
     <section class="testimoni">
         <div class="container">
@@ -58,29 +94,41 @@
             <!-- Swiper Container -->
             <div class="swiper-container testimoni-swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($testimoni as $testi)
+                    @foreach ($testimoni->take(4) as $testi)
                         <div class="swiper-slide">
-                            <div class="testimonial-card">
-                                <div class="d-flex mb-2">
-                                    <div class="ms-3">
-                                        <strong>{{ $testi->nama_pembeli }}</strong>
-                                        <div class="stars">
-                                            {{ str_repeat('★', $testi->rating) }}{{ str_repeat('☆', 5 - $testi->rating) }}
-                                        </div>
-                                    </div>
+                            <div class="card" style="border: none; border-radius: 10px; overflow: hidden; width: fit-content; padding:15px;">
+                                @php
+                                    $extension = pathinfo($testi->media, PATHINFO_EXTENSION);
+                                @endphp
+    
+                                @if (!empty($testi->media))
+                                    @if (in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif']))
+                                        <img src="{{ asset('storage/' . $testi->media) }}" alt="Testimoni Media" style="width: 330px; height: 520px; object-fit: fill;">
+                                    @elseif (in_array(strtolower($extension), ['mp4', 'mov', 'avi']))
+                                        <video src="{{ asset('storage/' . $testi->media) }}" controls style="width: 330px; height: 520px; object-fit: fill;"></video>
+                                    @else
+                                        <p class="text-center p-2">Media tidak dikenali</p>
+                                    @endif
+                                @endif
+    
+                                <div class="card-body text-center p-2">
+                                    <small class="text-muted">{{ ucfirst($testi->platform) }}</small>
                                 </div>
-                                <p class="date-time"><small>{{ date('d-m-Y', strtotime($testi->waktu_pembelian)) }}</small></p>
-                                <p class="variant"><strong>Varian:</strong> {{ $testi->variasi}}</p>
-                                <p class="description">{{ $testi->deskripsi }}</p>
                             </div>
                         </div>
                     @endforeach
                 </div>
+            </div>
     
-                
+            <!-- Tombol Selengkapnya -->
+            <div class="btn-testimoni text-center mt-4">
+                <a href="{{ route('testimoni.index') }}" class="btn btn-custom">Lihat Semua Testimoni</a>
             </div>
         </div>
     </section>
+    
+    
+    
     
     
     
@@ -139,7 +187,7 @@
             <!-- Swiper Container -->
             <div class="swiper-container portfolio-swiper">
                 <div class="swiper-wrapper">
-                   @foreach ($portfolio as $p)
+                    @foreach ($portfolio->take(5) as $p)
                     <div class="swiper-slide">
                         <img src="{{ asset('storage/' . $p->gambar_port) }}">
                     </div>
@@ -148,6 +196,9 @@
     
                 <!-- Pagination Dots -->
                 <div class="swiper-pagination"></div>
+            </div>
+            <div class="btn-portfolio text-center mt-4">
+                <a href="{{ route('portfolio.index') }}" class="btn btn-custom">Lihat Semua Portfolio</a>
             </div>
         </div>
     </section>
@@ -222,24 +273,45 @@
      
     <script>
         var testimoniSwiper = new Swiper('.testimoni-swiper', {
-            slidesPerView: 3, /* Tampilkan 3 testimoni dalam satu tampilan */
-            spaceBetween: 20, /* Jarak antar testimoni */
-            loop: false, /* Infinite scroll */
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true, /* Bisa diklik */
-            },
-            autoplay: {
-                delay: 3000, /* Ganti slide otomatis setiap 3 detik */
-                disableOnInteraction: false, /* Tetap auto-slide setelah interaksi */
-            },
-            breakpoints: {
-                992: { slidesPerView: 3 }, /* 3 testimoni di layar besar */
-                768: { slidesPerView: 2 }, /* 2 testimoni di tablet */
-                400: { slidesPerView: 1 }  /* 1 testimoni di HP */
-            }
-        });
+        slidesPerView: 3, /* Tampilkan 3 testimoni dalam satu tampilan */
+        spaceBetween: 20, /* Jarak antar testimoni */
+        loop: false, /* Infinite scroll */
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true, /* Bisa diklik */
+            type: 'bullets', /* Tipe pagination: bullets */
+        },
+        autoplay: {
+            delay: 3000, /* Ganti slide otomatis setiap 3 detik */
+            disableOnInteraction: false, /* Tetap auto-slide setelah interaksi */
+        },
+        breakpoints: {
+            992: { slidesPerView: 3 }, /* 3 testimoni di layar besar */
+            768: { slidesPerView: 2 }, /* 2 testimoni di tablet */
+            400: { slidesPerView: 1 }  /* 1 testimoni di HP */
+        }
+    });
+
     </script>
+
+<script>
+    var heroSwiper = new Swiper('.hero-section', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        speed: 400, // Kecepatan transisi dalam milidetik (default 300)
+        effect: 'slide', // pastikan menggunakan 'slide' (default)
+    });
+</script>
+
     
     
     

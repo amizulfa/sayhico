@@ -2,28 +2,29 @@
 
 @section('landingpage') 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="container btn-back mt-3">     
-    <div class="container btn-back mt-3">         
-        <a href="{{ route('produk.index', ['kategori' => request('kategori')]) }}" 
-           class="text-dark fw-bold d-flex align-items-center" style="text-decoration: none;">             
-            <i class="fas fa-arrow-left me-2"></i> Kembali         
-        </a>     
-    </div>     
-</div> 
-
-<div class="container">     
-    <div class="detail-section container text-center">         
-        <h1 class="font-weight-bold text-center title-h1">             
-            Detail Produk         
-        </h1>     
-    </div> 
-</div> 
+<div class="container" style="margin-top: 150px;">
+    <div class="row align-items-center">
+        <div class="col-2 d-flex justify-content-start">
+            <a href="{{ route('produk.index', ['kategori' => request('kategori')]) }}" style="text-decoration: none; color:black; font-weight:bold;" >
+                <i class="fas fa-arrow-left me-2" ></i> Kembali
+            </a>
+        </div>
+        <div class="col-8 text-center">
+            <h1 class="fw-bold m-0">Detail Produk</h1>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
 
 <div class="container detail-container py-5">     
     <div class="row">         
         <!-- Gambar Produk -->         
-        <div class="col-md-6 img-container">             
-            <img id="mainImage" src="{{ asset('storage/' .$produk->gambar_produk) }}" class="img-detail" alt="{{ $produk->nama_produk }}">
+        <div class="col-md-6 img-container position-relative">
+            <img id="mainImage" src="{{ asset('storage/' .$produk->gambar_produk) }}" class="img-detail rounded-3" alt="{{ $produk->nama_produk }}">
+            
+            @if ($produk->best_seller === 'ya')
+                <span class="badge bg-warning text-dark position-absolute top-0 m-3" style="right:120px;">Best Seller</span>
+            @endif
             <div class="d-flex mt-3">                 
                 <!-- Thumbnail Gambar Lain -->                 
                 @if ($produk->gambar_produk2)
@@ -49,6 +50,10 @@
             <p class="text-dark"><strong>Ukuran:</strong> {{ $produk->ukuran }}</p>
             <p class="text-dark deskripsi-produk">{{ $produk->deskripsi }}</p>
 
+            <p class="mt-4 mb-2 text-dark">
+                💡 <strong>Suka produk ini?</strong> Simpan dulu supaya bisa kamu lihat kapan pun!
+            </p>
+            
             @auth
                 <!-- Jika sudah login -->
                 <button 
@@ -67,6 +72,7 @@
                     <i class="fa-solid fa-heart"></i> Simpan Produk
                 </button>
             @endauth
+            
 
 
             <!-- Tombol Pesan Sekarang -->
@@ -141,7 +147,7 @@
 </div>
 
 <script>
-    document.getElementById('wishlist-btn').addEventListener('click', function () {
+    document.getElementById('wishlist-btn')?.addEventListener('click', function () {
         let produkId = this.getAttribute('data-produk-id');
         let sudahDisimpan = this.getAttribute('data-saved') === 'true';
     
@@ -165,21 +171,23 @@
         })
         .catch(error => console.error('Error:', error));
     });
-    
+
     function showLoginAlert() {
-    Swal.fire({
-        title: 'Login Diperlukan',
-        text: 'Silakan login terlebih dahulu untuk menyimpan produk.',
-        icon: 'warning',
-        confirmButtonText: 'Login Sekarang',
-        showCancelButton: true,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "{{ route('login') }}";
-        }
-    });
-}
+        Swal.fire({
+            title: 'Yuk Simpan Produk Ini!',
+            text: 'Agar bisa menyimpan produk favoritmu dan melihatnya kembali nanti, yuk mulai dulu dengan membuat akun atau masuk.',
+            icon: 'info',
+            confirmButtonText: 'Oke, Aku Mau!',
+            showCancelButton: true,
+            cancelButtonText: 'Nanti Dulu'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('login') }}";
+            }
+        });
+    }
 </script>
+
 
 <script>
     document.querySelectorAll('.thumbnail-img').forEach(function (thumbnail) {

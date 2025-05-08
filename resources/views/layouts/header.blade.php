@@ -19,13 +19,97 @@
         border: none;
     }
 
+    .navbar {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+        line-height: 1;
+    }
+
+        /* Container navbar */
+        .navbar .container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 auto;
+        align-items: center;
+        height: 90px; /* sesuaikan dengan logo */
+    }
+
+    /* Umum - kecilkan padding & sesuaikan tampilan */
+.navbar {
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+}
+
+/* Responsive khusus untuk lebar <= 412px */
+@media (max-width: 412px) {
+    .navbar-brand img {
+        height: 80px; /* tetap besar tapi tidak over */
+    }
+
+    .navbar-nav {
+        gap: 0.5rem;
+        padding-left: 1rem;
+    }
+
+    .navbar .btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-menu {
+        font-size: 0.9rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.95rem;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .navbar-collapse {
+        background-color: white;
+        padding: 1rem;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .navbar-nav .nav-link {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        color: var(--primary-color);
+    }
+
+    .navbar .dropdown-menu {
+        background-color: white;
+        border: 1px solid #ddd;
+        width: 100%;
+    }
+
+    .dropdown-menu .dropdown-item {
+        padding: 0.5rem 1rem;
+    }
+}
+
+
 </style>
 <body>
-    <nav class="navbar navbar-expand-lg bg-white border-bottom border-dark">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom border-dark fixed-top">
+
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" height="70">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" height="90">
             </a>
 
             <!-- Toggle button for mobile -->
@@ -46,11 +130,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kategoriproduk') ? 'fw-bold' : '' }}" 
-                           href="{{ route('kategoriproduk.index') }}" 
-                           style="color: var(--primary-color);">
+                        <a class="nav-link {{ Request::is('kategoriproduk*') || Request::is('produk*') ? 'fw-bold' : '' }}" 
+                        href="{{ route('kategoriproduk.index') }}" 
+                        style="color: var(--primary-color);">
                             Produk
                         </a>
+
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('caraorder') ? 'fw-bold' : '' }}" 
@@ -112,5 +198,3 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

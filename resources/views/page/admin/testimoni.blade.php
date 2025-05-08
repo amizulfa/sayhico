@@ -18,13 +18,8 @@
                     <thead class="table-light">
                         <tr>
                             <th>No</th>
-                            <th>Nama Pembeli</th>
-                            <th>Waktu Pembelian</th>
-                            <th>Variasi</th>
-                            <th>Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Rating</th>
-                            <th>Gambar Testimoni</th>
+                            <th>Media</th>
+                            <th>Platform</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -32,19 +27,18 @@
                         @foreach ($testimoni as $index => $t)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $t->nama_pembeli }}</td>
-                                <td>{{ $t->waktu_pembelian }}</td>
-                                <td>{{ $t->variasi }}</td>
-                                <td>{{ $t->kategori->nama_kategori }}</td>
-                                <td>{{ $t->deskripsi }}</td>
-                                <td>{{ $t->rating }}/5</td>
                                 <td>
-                                    @if($t->gambar_testi)
-                                        <img src="{{ asset('storage/' . $t->gambar_testi) }}" width="50" class="img-thumbnail">
+                                    @if($t->media)
+                                        @if(Str::endsWith($t->media, ['.mp4', '.mov', '.avi']))
+                                            <video src="{{ asset('storage/' . $t->media) }}" width="100" controls></video>
+                                        @else
+                                            <img src="{{ asset('storage/' . $t->media) }}" width="100" class="img-thumbnail">
+                                        @endif
                                     @else
                                         -
                                     @endif
                                 </td>
+                                <td>{{ $t->platform }}</td>
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{ route('admin.testimoni.edit', $t->id_testi) }}" class="btn btn-light border me-1">

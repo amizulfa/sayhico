@@ -46,7 +46,7 @@ public function register(Request $request)
         ]);
 
         // Jika email atau username adalah "admin" dan password adalah "admin"
-        if (($request->email === 'admin' || $request->email === 'admin@admin.com') && $request->password === 'admin') {
+        if (($request->email === 'admin' || $request->email === 'admin@gmail.com') && $request->password === 'admin') {
             // Simpan sesi admin secara manual
             session(['is_admin' => true]);
 

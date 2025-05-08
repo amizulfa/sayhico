@@ -22,6 +22,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center; /* Pusatkan konten di tengah */
 }
 
 .testimonial-header img {
@@ -39,22 +40,25 @@
 .testimonial-meta {
     font-size: 13px;
     color: gray;
+    text-align: center; /* Pusatkan meta-data */
 }
 
 .testimonial-text {
     font-size: 14px;
     color: #333;
+    text-align: center; /* Pusatkan teks */
 }
 
 .product-images {
     display: flex;
     gap: 10px;
     margin-top: 10px;
+    justify-content: center; /* Pusatkan gambar produk */
 }
 
 .product-images img {
-    width: 80px;
-    height: 80px;
+    width: 60px; /* Ukuran gambar lebih kecil */
+    height: 60px;
     object-fit: cover;
     border-radius: 8px;
 }
@@ -127,6 +131,44 @@
 /* ========================== */
 
 @media (max-width: 412px) {
+    .testimonial-header {
+        flex-direction: column; /* Menyusun gambar dan nama vertikal */
+        align-items: center; /* Pusatkan gambar dan nama */
+    }
+
+    .testimonial-header img {
+        width: 40px; /* Ukuran gambar lebih kecil di layar kecil */
+        height: 40px;
+    }
+
+    .testimonial-meta,
+    .testimonial-text {
+        font-size: 12px; /* Ukuran font lebih kecil untuk teks */
+        text-align: center; /* Pusatkan teks */
+    }
+
+    .product-images img {
+        width: 50px; /* Ukuran gambar lebih kecil */
+        height: 50px;
+    }
+
+    .cta-section img {
+        height: 300px; /* Sesuaikan tinggi gambar pada layar kecil */
+    }
+
+    .cta-content h2 {
+        font-size: 20px; /* Ukuran font judul lebih kecil */
+    }
+
+    .cta-content p {
+        font-size: 14px; /* Ukuran font lebih kecil */
+    }
+
+    .cta-content .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
     .filter-container {
         flex-wrap: wrap;
         justify-content: center;
@@ -148,5 +190,3 @@
         word-wrap: break-word;
     }
 }
-
-
