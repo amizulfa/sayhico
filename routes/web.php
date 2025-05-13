@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\AdminPortfolioController;
 use App\Http\Controllers\admin\AdminKategoriFaqController;
 use App\Http\Controllers\admin\AdminFaqController;
 use App\Http\Controllers\admin\AdminPesanController;
+use App\Http\Controllers\admin\AdminWishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,8 +122,13 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/faqs/update/{id}', [AdminFaqController::class, 'update'])->name('admin.faqs.update');
     Route::delete('/faqs/delete/{id}', [AdminFaqController::class, 'destroy'])->name('admin.faqs.destroy');
 
+    // Pesan
     Route::get('/pesan', [AdminPesanController::class, 'index'])->name('admin.pesan');
     Route::post('/pesan/{id}/baca', [AdminPesanController::class, 'baca'])->name('pesan.baca');
     Route::get('/pesan/{id}/detail', [AdminPesanController::class, 'show'])->name('pesan.detail');
+
+    // Wishlist
+    Route::get('/wishlist', [AdminWishlistController::class, 'index'])->name('admin.wishlist');
+
 });
 

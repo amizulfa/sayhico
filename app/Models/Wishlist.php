@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Produk;
+use App\Models\User;
 
 class Wishlist extends Model
 {
@@ -11,18 +13,23 @@ class Wishlist extends Model
 
     protected $table = 'wishlist';
 
-    // Tambahkan 'tanggal_simpan' ke fillable
     protected $fillable = ['id_user', 'id_produk', 'tanggal_simpan'];
 
-    public $timestamps = false; // Karena tabel ini tidak pakai created_at dan updated_at
+    public $timestamps = false;
 
     protected $casts = [
-        'tanggal_simpan' => 'date', // Biar otomatis diparse jadi Carbon date object
+        'tanggal_simpan' => 'date',
     ];
 
     // Relasi ke model Produk
     public function produk()
     {
         return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+    }
+
+    // Relasi ke model User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
     }
 }

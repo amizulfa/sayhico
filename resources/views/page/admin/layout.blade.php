@@ -6,7 +6,9 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    @stack('styles')
 
+   
     <style>
         body {
             overflow-x: hidden;
@@ -127,6 +129,11 @@
                     <i class="fa-solid fa-message"></i>
                     <span class="text ms-2">Pesan</span>
                 </a>
+                <a href="{{ route('admin.wishlist') }}" class="nav-link text-light {{ request()->routeIs('admin.wishlist') ? 'active' : '' }}">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="text ms-2">Produk Tersimpan</span>
+                </a>
+
             </nav>
         </div>
         <div id="content" class="content p-4 flex-grow-1">
@@ -161,6 +168,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+ @stack('scripts')
 </body>
 </html>
